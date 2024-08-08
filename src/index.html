@@ -116,8 +116,18 @@
 
 		$('.js-addcart-detail').each(function(){
 			var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
+			
 			$(this).on('click', function(){
-				swal(nameProduct, "is added to cart !", "success");
+				
+				swal(nameProduct, "karta ekleme yeri !", "success");
+				alert("OLDU");
+				const appElement = document.querySelector('app-products');
+      if (appElement) {
+        const appComponent = angular.element(appElement).scope();
+        if (appComponent && appComponent.urunEkle) {
+          appComponent.urunEkle(); // Angular bileşen metodunu çağırın
+        }
+      }
 			});
 		});
 	

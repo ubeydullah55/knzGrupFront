@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { CartService } from '../../../services/cart.service';
+import { productsModel } from '../../../models/productModel';
 
 @Component({
   selector: 'app-products',
@@ -10,8 +11,13 @@ import { CartService } from '../../../services/cart.service';
 })
 export class ProductsComponent {
   cartService=inject(CartService);
-  urunEkle(){
-    this.cartService.urunEkle();
+
+
+  urunEkle(id: number,ad : string){
+    this.cartService.urunEkle(id,ad);
+  }
+  urunSil(id:number){
+    this.cartService.urunSil(id);
   }
 
 }
