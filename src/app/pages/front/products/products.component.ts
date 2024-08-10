@@ -3,6 +3,8 @@ import { CartService } from '../../../services/cart.service';
 import { productsModel } from '../../../models/productModel';
 import { ProductsService } from '../../../services/products.service';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
+import { DataService } from '../../../services/data-service.service';
 @Component({
   selector: 'app-products',
   standalone: true,
@@ -12,6 +14,7 @@ import { CommonModule } from '@angular/common';
 })
 export class ProductsComponent {
 
+  constructor(private router: Router, private dataService: DataService) {}
   cartService=inject(CartService);
   productsService=inject(ProductsService);
 
@@ -26,6 +29,9 @@ export class ProductsComponent {
   urunSil(id:number){
     this.cartService.urunSil(id);
   }
-
+  viewDetails(item: any) {
+    this.dataService.setData(item);
+    this.router.navigate(['/detailproduct']);
+  }
   
 }
