@@ -14,5 +14,5 @@ import { HeaderComponent } from './include/front/header/header.component';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'costare';
+  title = 'KNZGROUP';
 }

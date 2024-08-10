@@ -27,4 +27,5 @@ export class ProductsComponent {
     this.cartService.urunSil(id);
   }
 
+  
 }
