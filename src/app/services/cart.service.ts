@@ -64,6 +64,10 @@ public product :productsModel[]=[];
   productsCount(){
     return this.product.length;
   }
+  sepetiBosalt(){
+    this.product=[];
+    this.SaveLocalStorageProduct();
+  }
   SaveLocalStorageProduct() 
   {
     localStorage.setItem('urunEklemesession',JSON.stringify(this.product));

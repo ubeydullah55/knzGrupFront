@@ -19,4 +19,7 @@ export class HeaderComponent {
   urunSil(id:number){
     this.cartService.urunSil(id);
   }
+  sepetiBosalt(){
+    this.cartService.sepetiBosalt();
+  }
 }
