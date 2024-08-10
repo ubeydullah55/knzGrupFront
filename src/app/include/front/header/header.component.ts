@@ -12,9 +12,7 @@ import { CommonModule } from '@angular/common';
 export class HeaderComponent {
   
   cartService=inject(CartService);
-  urunEkle(id: number,ad : string){
-    this.cartService.urunEkle(id,ad);
-  }
+ 
   urunListele(){
     this.cartService.getAllSessionProducts();
   }

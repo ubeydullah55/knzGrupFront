@@ -22,8 +22,8 @@ export class ProductsComponent {
     return item.id; // Her öğe için benzersiz olan ID'yi döndür
   }
 
-  urunEkle(id: number,ad : string){
-    this.cartService.urunEkle(id,ad);    
+  urunEkle(item:any){
+    this.cartService.urunEkle(item);    
   }
 
   urunSil(id:number){
