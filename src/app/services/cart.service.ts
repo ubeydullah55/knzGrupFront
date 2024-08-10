@@ -15,9 +15,7 @@ public product :productsModel[]=[];
       if(data){
         this.product=JSON.parse(data);
       }
-      else{
-        alert('ls yok');
-      }
+    
     }
    }
   
