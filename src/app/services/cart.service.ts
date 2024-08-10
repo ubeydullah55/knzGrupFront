@@ -72,4 +72,26 @@ public product :productsModel[]=[];
   {
     localStorage.setItem('urunEklemesession',JSON.stringify(this.product));
  }
+ updateItem(updatedItem: any) {
+  // Sepetteki ürünü günceller
+  const index = this.product.findIndex(item => item.id === updatedItem.id);
+  if (index > -1) {
+    this.product[index] = updatedItem;
+    this.SaveLocalStorageProduct();
+  }
+  
+}
+totalPrice() : number{
+  let totalPrice = 0;
+  for (const item of this.product) {
+    totalPrice += item.price * item.count; // Fiyat ve miktar çarpımını toplama ekle
+  }
+  return totalPrice;
+}
+teklifAl(){
+  for (const item of this.product) {
+     console.log(item);
+  }
+}
+
 }
