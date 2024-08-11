@@ -12,9 +12,25 @@
                             <span>$40.00</span>
                         </div>
                         <p class="lead">{{item.description}}</p>
-                        <div class="d-flex">
-                            <input class="form-control text-center me-3" id="inputQuantity" type="num" value="1" style="max-width: 3rem" />
-                            <button class="btn btn-outline-dark flex-shrink-0" type="button">
+                                       <br> 
+                        <div class="d-flex" >
+
+                            <div class="wrap-num-product flex-w">
+                                <div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m" (click)="changeQuantity(item, -1)">
+                                   <i class="fs-16 zmdi zmdi-minus"></i>
+                                </div>
+                 
+                                <input class="mtext-104 cl3 txt-center num-product"
+                                        type="number"
+                                         [ngModel]="item.count"
+                                        (ngModelChange)="updateQuantity(item, $event)"
+                                         name="num-product-{{item.id}}">
+                 
+                                <div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m" (click)="changeQuantity(item, 1)">
+                                   <i class="fs-16 zmdi zmdi-plus"></i>
+                                </div>
+                             </div>
+                            <button (click)="urunEkleToplu(item)" class="btn btn-outline-success flex-shrink-0" type="button">
                                 <i class="bi-cart-fill me-1"></i>
                                Sepete Ekle
                             </button>

@@ -37,7 +37,45 @@ public product :productsModel[]=[];
      products.description = item.description;
      products.imgfile = item.imgfile;
      products.price=item.price;
-     products.count = 1;  // Yeni ürün için count'u 1 olarak ayarla
+     if(item.count>0){
+      products.count = item.count;
+     }
+     else
+     {
+      products.count = 1;  // Yeni ürün için count'u 1 olarak ayarla
+     }
+    
+     this.product.push(products);
+   }
+ 
+   this.SaveLocalStorageProduct();
+   alert("Ekleme başarılı");
+  }
+  urunEkleToplu(item:any)
+  {
+   
+   // Aynı ID'ye sahip ürünü bul
+   let existingProduct = this.product.find(p => p.id === item.id);
+
+   if (existingProduct) {
+     // Ürün zaten varsa, count'u artır
+     existingProduct.count = item.count;
+   } else {
+     // Ürün yoksa, yeni bir ürün olarak ekle
+     let products = new productsModel();
+     products.id = item.id;
+     products.name = item.name;
+     products.description = item.description;
+     products.imgfile = item.imgfile;
+     products.price=item.price;
+     if(item.count>0){
+      products.count = item.count;
+     }
+     else
+     {
+      products.count = 1;  // Yeni ürün için count'u 1 olarak ayarla
+     }
+    
      this.product.push(products);
    }
  
