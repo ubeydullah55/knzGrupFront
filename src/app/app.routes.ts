@@ -5,6 +5,7 @@ import { AboutComponent } from './pages/front/about/about.component';
 import { ContactComponent } from './pages/front/contact/contact.component';
 import { DetailproductComponent } from './pages/front/detailproduct/detailproduct.component';
 import { ShoppingCartComponent } from './pages/shopping-cart/shopping-cart.component';
+import { BlogdolapComponent } from './pages/front/blogdolap/blogdolap.component';
 
 export const routes: Routes = [
     {
@@ -30,5 +31,9 @@ export const routes: Routes = [
     {
         path:'shoppingCart',
         component:ShoppingCartComponent
+    },
+    {
+        path:'ahsap-metal-soyunma-dolaplari',
+        component:BlogdolapComponent
     }
 ];
