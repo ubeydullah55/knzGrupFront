@@ -7,6 +7,7 @@ import { DetailproductComponent } from './pages/front/detailproduct/detailproduc
 import { ShoppingCartComponent } from './pages/shopping-cart/shopping-cart.component';
 import { BlogdolapComponent } from './pages/front/blogdolap/blogdolap.component';
 import { BlogranzaComponent } from './pages/front/blogranza/blogranza.component';
+import { BlogekipmanComponent } from './pages/front/blogekipman/blogekipman.component';
 
 export const routes: Routes = [
     {
@@ -40,5 +41,9 @@ export const routes: Routes = [
     {
         path:'santiye-ranzasi',
         component:BlogranzaComponent
+    },
+    {
+        path:'is-guvenligi-ekipmanlari',
+        component:BlogekipmanComponent
     }
 ];
