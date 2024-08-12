@@ -174,14 +174,13 @@
 
                     <div class="header-cart-item-txt p-t-8">
                         <a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">                      
-                           <p>{{item.name}}</p>                                               
+                          <b><p>{{item.name}}</p> </b>                                             
                         </a>    
 
                         <span class="header-cart-item-info">
                            <b>{{item.count}}</b> adet <br>
-                           <b>₺ {{item.price * item.count}}</b>
-                        </span>
-                           
+                           <b>{{item.price}} x {{item.count}} = ₺ {{item.price * item.count}}</b>
+                        </span>                          
                     </div>
                     <button (click)="urunSil(item.id)" type="button" class="btn btn-danger btn-rounded" data-mdb-ripple-init>Çıkar</button>
                 </li>
@@ -191,7 +190,7 @@
             
             <div class="w-full">
                 <div class="header-cart-total w-full p-tb-40">
-                    Total: ₺ {{cartService.totalPrice()}}
+                   <b>Total: ₺ {{cartService.totalPrice()}}</b> 
                 </div>
 
                 <div class="header-cart-buttons flex-w w-full">                  

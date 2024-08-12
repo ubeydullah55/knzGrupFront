@@ -22,7 +22,7 @@
                  
                                 <input class="mtext-104 cl3 txt-center num-product"
                                         type="number"
-                                         [ngModel]="item.count"
+                                         [ngModel]="item.count || 1"
                                         (ngModelChange)="updateQuantity(item, $event)"
                                          name="num-product-{{item.id}}">
                  
