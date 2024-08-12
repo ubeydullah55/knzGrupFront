@@ -3,7 +3,8 @@ import { DataService } from '../../../services/data-service.service';
 import { CartService } from '../../../services/cart.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-
+import { ActivatedRoute } from '@angular/router';
+import { ProductsService } from '../../../services/products.service';
 @Component({
   selector: 'app-detailproduct',
   standalone: true,
@@ -13,11 +14,23 @@ import { CommonModule } from '@angular/common';
 })
 export class DetailproductComponent implements OnInit {
   item: any;
+  urlid:number;
   cartService=inject(CartService);
-  constructor(private dataService: DataService) {}
+  productsService=inject(ProductsService);
+  constructor(private dataService: DataService,private route: ActivatedRoute) {}
 
   ngOnInit(): void {
+    const id = this.route.snapshot.paramMap.get('id');
+    if (id !== null && id !== undefined) {
+      this.urlid = +id; // + işareti ile string'i number'a çeviriyoruz
+      this.item=this.productsService.getProductById(this.urlid as number);
+      return this.item;
+    } else {
+      // Hata durumunu veya default bir değeri ele alın
+      console.error('ID parametresi bulunamadı.');
+    }
     this.item = this.dataService.getData();
+    
   }
   changeQuantity(item: any, delta: number) {
     item.count = Math.max(1, item.count + delta); // Ensure count is at least 1   

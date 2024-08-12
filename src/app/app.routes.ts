@@ -45,5 +45,9 @@ export const routes: Routes = [
     {
         path:'is-guvenligi-ekipmanlari',
         component:BlogekipmanComponent
-    }
+    },
+    {
+        path: 'products/:slug/:id',
+        component: DetailproductComponent
+    },
 ];

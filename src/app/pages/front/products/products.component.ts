@@ -29,9 +29,5 @@ export class ProductsComponent {
   urunSil(id:number){
     this.cartService.urunSil(id);
   }
-  viewDetails(item: any) {
-    this.dataService.setData(item);
-    this.router.navigate(['/detailproduct']);
-  }
   
 }

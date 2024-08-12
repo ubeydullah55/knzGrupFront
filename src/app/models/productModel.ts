@@ -6,4 +6,5 @@ export class productsModel
     imgfile:string;
     description:string;
     count:number;
+    slug:string;
 }
