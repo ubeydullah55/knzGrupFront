@@ -1,4 +1,4 @@
-<form class="bg0 p-t-75 p-b-85" (ngSubmit)="teklifAl()">
+<form class="bg0 p-t-75 p-b-85" (ngSubmit)="getForm(contactForm)" #contactForm="ngForm">
     <div class="container">
         <div class="row">
             <div class="col-lg-10 col-xl-7 m-lr-auto m-b-50">
@@ -97,21 +97,21 @@
                             <div class="d-flex align-items-center mb-3">
                                 <i class="fa fa-address-book-o fa-2x" aria-hidden="true" style="margin-right: 5%;"></i>
                                 <div class="bor8 bg0 flex-grow-1">
-                                    <input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="adSoyad" placeholder="İsim Soyisim" style="width: 100%;">
+                                    <input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="adSoyad" placeholder="İsim Soyisim" style="width: 100%;" [(ngModel)]="formData.adSoyad" required>
                                 </div>
                             </div>
                         
                             <div class="d-flex align-items-center mb-3">
                                 <i class="fa fa-envelope fa-2x" aria-hidden="true" style="margin-right: 5%;"></i>
                                 <div class="bor8 bg0 flex-grow-1">
-                                    <input class="stext-111 cl8 plh3 size-111 p-lr-15" type="email" name="mail" placeholder="Mail Adresiniz" ngModel required>
+                                    <input class="stext-111 cl8 plh3 size-111 p-lr-15" type="email" name="mail" placeholder="Mail Adresiniz" [(ngModel)]="formData.mail" required>
                                 </div>
                             </div>
                         
                             <div class="d-flex align-items-center mb-3">
                                 <i class="fa fa-phone-square fa-2x" aria-hidden="true" style="margin-right: 5%;"></i>
                                 <div class="bor8 bg0 flex-grow-1">
-                                    <input class="stext-111 cl8 plh3 size-111 p-lr-15" type="number" name="telefon" placeholder="Telefon Numaranız">
+                                    <input class="stext-111 cl8 plh3 size-111 p-lr-15" type="number" name="telefon" placeholder="Telefon Numaranız" [(ngModel)]="formData.telefon" required>
                                 </div>
                             </div>
 

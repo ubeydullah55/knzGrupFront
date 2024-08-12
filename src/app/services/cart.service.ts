@@ -164,7 +164,10 @@ public product :productsModel[]=[];
       }
     }, 0);
   }
-
+  sepetSifirla(){
+    this.product=[];
+    this.SaveLocalStorageProduct();
+  }
   SaveLocalStorageProduct() 
   {
     localStorage.setItem('urunEklemesession',JSON.stringify(this.product));
