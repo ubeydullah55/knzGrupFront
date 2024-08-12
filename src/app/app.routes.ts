@@ -8,7 +8,7 @@ import { ShoppingCartComponent } from './pages/shopping-cart/shopping-cart.compo
 import { BlogdolapComponent } from './pages/front/blogdolap/blogdolap.component';
 import { BlogranzaComponent } from './pages/front/blogranza/blogranza.component';
 import { BlogekipmanComponent } from './pages/front/blogekipman/blogekipman.component';
-
+import { ReferanslarComponent } from './pages/front/referanslar/referanslar.component';
 export const routes: Routes = [
     {
         path:'',
@@ -45,6 +45,10 @@ export const routes: Routes = [
     {
         path:'is-guvenligi-ekipmanlari',
         component:BlogekipmanComponent
+    },
+    {
+        path:'referanslarimiz',
+        component:ReferanslarComponent
     },
     {
         path: 'products/:slug/:id',
