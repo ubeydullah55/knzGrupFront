@@ -27,6 +27,7 @@ export class ShoppingCartComponent {
   }
   teklifAl(){
     this.cartService.teklifAl();
+    alert("oldu");
  
   }
 }
