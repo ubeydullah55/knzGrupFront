@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { json } from 'stream/consumers';
 import { productsModel } from '../models/productModel';
+import Swal from 'sweetalert2';
 
 @Injectable({
   providedIn: 'root'
@@ -49,7 +50,7 @@ public product :productsModel[]=[];
    }
  
    this.SaveLocalStorageProduct();
-   alert("Ekleme başarılı");
+   Swal.fire('Ekleme Başarılı', "Ürün sepetinize başarılı bir şekilde eklenmiştir !", "success");  
   }
   urunEkleToplu(item:any)
   {
@@ -80,32 +81,90 @@ public product :productsModel[]=[];
    }
  
    this.SaveLocalStorageProduct();
-   alert("Ekleme başarılı");
+   Swal.fire('Ekleme Başarılı', "Ürün sepetinize başarılı bir şekilde eklenmiştir !", "success"); 
   }
   
-  urunSil(id:number)
-  {
-    const index = this.product.findIndex(x => x.id === id);
-    if(index>-1){
-      this.product.splice(index, 1); 
-      this.SaveLocalStorageProduct();
-      alert("Silme başarılı");
-    }
-   else{
-    alert("Silme başarısız");
-   }    
+  urunSil(id: number) {
+    Swal.fire({
+      title: 'Seçili ürünü silmek istediğinize emin misiniz?',
+      showDenyButton: true,
+      showCancelButton: false,
+      confirmButtonText: 'Evet',
+      denyButtonText: 'Hayır',
+      customClass: {
+        actions: 'my-actions',
+        cancelButton: 'order-1 right-gap',
+        confirmButton: 'order-2',
+        denyButton: 'order-3',
+      },
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const index = this.product.findIndex(x => x.id === id);
+        if (index > -1) {
+          this.product.splice(index, 1);
+          this.SaveLocalStorageProduct();        
+        } else {
+          Swal.fire('Hata', "Silme işlemi başarısız. Bir hata ile karşılaşıldı!", "error").then(() => {
+            // Hata bildirimin z-index ayarını yap
+            const swalPopup = document.querySelector('.swal2-container');
+            if (swalPopup) {
+              (swalPopup as HTMLElement).style.zIndex = '2000';
+            }
+          });
+        }
+      } else if (result.isDenied) {
+        return;
+      }
+    });
+  
+    // İlk bildirim için z-index ayarını yap
+    setTimeout(() => {
+      const swalPopup = document.querySelector('.swal2-container');
+      if (swalPopup) {
+        (swalPopup as HTMLElement).style.zIndex = '2000';
+      }
+    }, 0);
   }
+  
+  
   
   getAllSessionProducts(){
     return this.product;
   }
+  
   productsCount(){
     return this.product.length;
   }
+
   sepetiBosalt(){
-    this.product=[];
-    this.SaveLocalStorageProduct();
+    Swal.fire({
+      title: 'Sepetteki tüm ürünler silinecek devam etmek istiyormusunuz ?',
+      showDenyButton: true,
+      showCancelButton: false,
+      confirmButtonText: 'Yes',
+      denyButtonText: 'No',
+      customClass: {
+        actions: 'my-actions',
+        cancelButton: 'order-1 right-gap',
+        confirmButton: 'order-2',
+        denyButton: 'order-3',
+      },
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.product=[];
+        this.SaveLocalStorageProduct();
+      } else if (result.isDenied) {
+        return;
+      }
+    });
+    setTimeout(() => {
+      const swalPopup = document.querySelector('.swal2-container');
+      if (swalPopup) {
+        (swalPopup as HTMLElement).style.zIndex = '2000';
+      }
+    }, 0);
   }
+
   SaveLocalStorageProduct() 
   {
     localStorage.setItem('urunEklemesession',JSON.stringify(this.product));

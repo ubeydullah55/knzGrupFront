@@ -5,6 +5,7 @@ import { ProductsService } from '../../../services/products.service';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { DataService } from '../../../services/data-service.service';
+
 @Component({
   selector: 'app-products',
   standalone: true,
@@ -23,7 +24,7 @@ export class ProductsComponent {
   }
 
   urunEkle(item:any){
-    this.cartService.urunEkle(item);    
+    this.cartService.urunEkle(item);  
   }
 
   urunSil(id:number){
