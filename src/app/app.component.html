@@ -1,9 +1,9 @@
+<!-- Koşullu Header -->
+<!-- Header sadece '/admin' URL'lerinde gösterilmeyecek -->
+<app-header *ngIf="showHeader"></app-header>
 
-<app-header></app-header>
-<router-outlet ><router-outlet />
+<!-- Ana içeriğin render edileceği alan -->
+<router-outlet></router-outlet>
 
-<app-footer><app-footer />
-
-
-
-
+<!-- Footer -->
+<app-footer *ngIf="showHeader"></app-footer>

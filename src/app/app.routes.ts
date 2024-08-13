@@ -9,6 +9,7 @@ import { BlogdolapComponent } from './pages/front/blogdolap/blogdolap.component'
 import { BlogranzaComponent } from './pages/front/blogranza/blogranza.component';
 import { BlogekipmanComponent } from './pages/front/blogekipman/blogekipman.component';
 import { ReferanslarComponent } from './pages/front/referanslar/referanslar.component';
+import { LoginComponent } from './pages/admin/login/login.component';
 export const routes: Routes = [
     {
         path:'',
@@ -53,5 +54,9 @@ export const routes: Routes = [
     {
         path: 'products/:slug/:id',
         component: DetailproductComponent
+    }, 
+    {
+        path: 'admin',
+        component: LoginComponent
     },
 ];
