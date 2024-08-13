@@ -1,16 +1,24 @@
-import { AfterViewInit,Component } from '@angular/core';
-
+import { AfterViewInit, Component, Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-referanslar',
   standalone: true,
   imports: [],
   templateUrl: './referanslar.component.html',
-  styleUrl: './referanslar.component.css'
+  styleUrls: ['./referanslar.component.css']
 })
-export class ReferanslarComponent implements AfterViewInit  {
+export class ReferanslarComponent implements AfterViewInit {
+  isBrowser: boolean;
+
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {
+    this.isBrowser = isPlatformBrowser(this.platformId);
+  }
+
   ngAfterViewInit() {
-    this.loadImages();
+    if (this.isBrowser) {
+      this.loadImages();
+    }
   }
 
   loadImages() {
@@ -27,12 +35,11 @@ export class ReferanslarComponent implements AfterViewInit  {
       colDiv.innerHTML = `
         <div class="card bg-light border-1 h-70">
           <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">                         
-            <img src="assets/cozastore-master/images/referanslar/r${i}.png" alt="IMG" style="max-width: 100%; height: auto; display: block;">
+            <img src="assets/cozastore-master/images/referanslar/r${i}.png" loading="lazy" alt="IMG" style="max-width: 100%; height: auto; display: block;">
           </div>
         </div>
       `;
       container.appendChild(colDiv);
     }
-  
   }
 }
