@@ -14,9 +14,10 @@ import { Router, NavigationEnd } from '@angular/router';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent  implements OnInit{
+export class AppComponent implements OnInit {
   title = 'KNZGROUP';
   showHeader: boolean = true;
+  showAdminHeader: boolean = false;
 
   constructor(private router: Router) {}
 
@@ -24,7 +25,16 @@ export class AppComponent  implements OnInit{
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         // URL'de '/admin' var mı kontrol et
-        this.showHeader = !event.url.includes('/admin');
+        if (event.url === '/admin') {
+          this.showHeader = false;
+          this.showAdminHeader = false;
+        } else if (event.url.startsWith('/admin')) {
+          this.showHeader = false;
+          this.showAdminHeader = true;
+        } else {
+          this.showHeader = true;
+          this.showAdminHeader = false;
+        }
       }
     });
   }
