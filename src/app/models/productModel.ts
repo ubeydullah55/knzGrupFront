@@ -7,4 +7,5 @@ export class productsModel
     description:string;
     count:number;
     slug:string;
+    categoryname:string;
 }

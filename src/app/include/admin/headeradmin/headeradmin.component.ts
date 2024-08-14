@@ -9,10 +9,14 @@ import { Router } from '@angular/router';
 })
 export class HeaderadminComponent {
   constructor(private router: Router) {
-    if(!sessionStorage.getItem('loginControl') || sessionStorage.getItem('loginControl')!='true')
-      {
+    
+  }
+  ngOnInit() {
+    if (typeof window !== 'undefined' && typeof sessionStorage !== 'undefined') {
+      if (!sessionStorage.getItem('loginControl') || sessionStorage.getItem('loginControl') !== 'true') {
         this.router.navigate(['/admin']);
       }
+    }
   }
   killLoginSession(){
     sessionStorage.setItem('loginControl', 'false');
