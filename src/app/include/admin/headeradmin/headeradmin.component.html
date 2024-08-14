@@ -27,10 +27,7 @@
                 <div class="menu-desktop">
                     <ul class="main-menu">
                         <li class="active-menu">
-                            <a href="">Anasayfa</a>
-                        </li>
-                        <li>
-                            <a href="products">Teklif Bekleyenler</a>
+                            <a href="admin/panel">Teklif Bekleyenler</a>
                         </li>
                         <li>
                             <a href="about">Mesajlar</a>
@@ -45,6 +42,10 @@
                         <li>
                             <a href="referanslarimiz">Toplu Mail</a>
                         </li>
+                        <li>
+                            <button (click)="killLoginSession()">Çıkış</button>
+                        </li>
+                        
                     </ul>
                 </div>	
 

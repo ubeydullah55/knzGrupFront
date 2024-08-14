@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import Swal from 'sweetalert2';
 @Component({
@@ -12,19 +13,28 @@ import Swal from 'sweetalert2';
 })
 export class LoginComponent {
   email: string = '';
-  msg: string = '';
+  password: string = '';
   emailError: boolean = false;
-
+  constructor(private router: Router) {}
   // Form gönderim işlemi
   onSubmit() {
-    if (this.isEmailValid(this.email) && this.msg.trim() !== '') {
+    if (this.isEmailValid(this.email) && this.password.trim() !== '') {
+      this.loginControl();
       // Form verilerini işleme kodu
-      Swal.fire('Gönderim Başarılı', "Mesajınız iletilmiştir en kısa sürede size dönüş yapılacaktır.... !", "success");
+      if(sessionStorage.getItem('loginControl')=='true'){
+        Swal.fire('Gönderim Başarılı', "Giriş başarılı... !", "success");
+        this.redirectToPanel();
+      }
+     else
+     {
+      Swal.fire('Hata', "Mail aderesi veya şifre yanlış... !", "error");
+      this.email = '';
+      this.password = '';
+     }
       
       //alert(`Email: ${this.email}\nMesaj: ${this.msg}`);
       // Formu sıfırlama
-      this.email = '';
-      this.msg = '';
+      
       this.emailError = false; // Hata mesajını gizle
     } else {
       this.emailError = !this.isEmailValid(this.email);
@@ -36,5 +46,13 @@ export class LoginComponent {
   isEmailValid(email: string): boolean {
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailPattern.test(email);
+  }
+  loginControl(){
+    if((this.email=='d.ubeydullah@gmail.com')&&(this.password=='123')){      
+      sessionStorage.setItem('loginControl', 'true');
+    }
+  }
+  redirectToPanel(): void {
+    this.router.navigate(['/admin/panel']);
   }
 }
