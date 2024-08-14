@@ -13,8 +13,16 @@ export class CategoryService {
     { id: 4, name: 'Shoes' },
     { id: 5, name: 'Watches' },
   ];
+  public categoryHome :categoryModel[]=[
+    { id: 1, name: 'Çok Satanlar' },
+    { id: 2, name: 'İndirimli' },
+    { id: 3, name: 'Yeni Çıkanlar' },
+  ];
 
   getAllCategory():categoryModel[]{
     return this.category;
+  }
+  getAllCategoryHome():categoryModel[]{
+    return this.categoryHome;
   }
 }

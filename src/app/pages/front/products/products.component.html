@@ -7,7 +7,7 @@
 						Tüm Ürünler
 					</button>
 					<div *ngFor="let item of categoryService.getAllCategory(); trackBy: trackById">
-						<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" [attr.data-filter]="'.' + item.name">
+						<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" [attr.data-filter]="'.' + item.id">
 						  {{ item.name }}
 						</button>
 					  </div>
@@ -44,9 +44,9 @@
 
 
 	<!-- ürünler dinamil -->
-				  @for(item of productsService.gelAllProducts();track item.id) 
+				  @for(item of productsService.getAllProducts();track item.id) 
 				  {
-					<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item {{item.categoryname}}">
+					<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item {{item.categoryid}}">
 						<!-- Block2 -->
 						<div class="block2">
 							<div class="block2-pic hov-img0">
