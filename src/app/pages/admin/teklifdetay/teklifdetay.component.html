@@ -1,0 +1,51 @@
+<form class="bg0 p-t-75 p-b-85">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 col-xl-7 m-lr-auto m-b-50">
+                <div class="m-l-25 m-r--38 m-lr-0-xl">
+                    <div class="wrap-table-shopping-cart">
+                        <table class="table-shopping-cart">
+                            <thead>
+                               <tr class="table_head">
+                                  <th class="column-1">Ürün</th>
+                                  <th class="column-2">Ürün Adı</th>
+                                  <th class="column-3" >Fiyat</th>
+                                  <th class="column-4"style="text-align: center;">Adet</th>
+                                  <th class="column-5">Total Fiyat</th>
+                               </tr>
+                            </thead>
+                            <tbody>
+                                @for(item of getir();track item.productid) 
+                                {
+                               <tr class="table_row">
+                                  <td class="column-1">
+                                     <div class="how-itemcart1">
+                                        <img src="assets/cozastore-master/images/{{item.productimg}}" alt="IMG">
+                                     </div>
+                                  </td>
+                                  <td class="column-2">{{item.productname}}</td>
+                                  <td class="column-3">₺ {{item.productprice}}</td>
+                                  <td class="column-4" style="text-align: center;">{{item.count}}</td>
+                                  <td class="column-5">₺ {{item.productprice * item.count}}</td>
+                               </tr>
+                                }
+                                <tr class="table_row">
+                                    <td class="column-1"></td>
+                                    <td class="column-2"></td>
+                                    <td class="column-3"></td> 
+                                    <td class="column-4"><b>TOPLAM VERİLEN FİYAT:</b></td>
+                                    <td class="column-5"><b>₺ {{totalPrice()}}</b></td>
+                                 </tr>
+                            </tbody>
+                         </table>
+                         
+                    </div>
+
+                </div>
+            </div>
+
+            
+        </div>
+    </div>
+</form>
+    

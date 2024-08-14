@@ -11,6 +11,7 @@ import { BlogekipmanComponent } from './pages/front/blogekipman/blogekipman.comp
 import { ReferanslarComponent } from './pages/front/referanslar/referanslar.component';
 import { LoginComponent } from './pages/admin/login/login.component';
 import { PanelComponent } from './pages/admin/panel/panel.component';
+import { TeklifdetayComponent } from './pages/admin/teklifdetay/teklifdetay.component';
 export const routes: Routes = [
     {
         path:'',
@@ -64,4 +65,9 @@ export const routes: Routes = [
         path: 'admin/panel',
         component: PanelComponent
     },
+    {
+        path: 'admin/teklif-detay/:id',
+        component: TeklifdetayComponent
+    },
+    
 ];

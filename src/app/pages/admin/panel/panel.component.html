@@ -31,14 +31,17 @@
                     </tr>
                 </tfoot>
                 <tbody>
+                    @for(item of getAllTeklif();track item.teklifid) 
+				  {
                     <tr>
-                        <td><a href="admin/teklif-detay/1">1</a></td>
-                        <td>ubeydullah Doğan</td>
-                        <td>d.ubeydullahgmail.com</td>
-                        <td>05541897255</td>
-                        <td>2011/04/25</td>
-                        <td>₺12,800</td>
+                        <td><a href="admin/teklif-detay/{{item.teklifid}}">#{{item.teklifid}}</a></td>
+                        <td>{{item.adsoyad}}</td>
+                        <td>{{item.mail}}</td>
+                        <td>{{item.tel}}</td>
+                        <td>{{item.tarih}}</td>
+                        <td>{{item.tutar}}₺</td>
                     </tr>
+                  }
                     <tr>
                         <td>Tiger Nixon</td>
                         <td>System Architect</td>
