@@ -37,12 +37,17 @@ export class ProductsService {
       item.slug=item.name.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '');
     });
   }
+  generateSlugHome() {
+    this.productHome.forEach(item => {
+      item.slug=item.name.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '');
+    });
+  }
   getAllProducts(){
     this.generateSlug();
     return this.product;
   }
   getAllProductsHome(id:number):productsModel[] | undefined{
-    this.generateSlug();
+    this.generateSlugHome();
     const products = this.productHome.filter(product => product.categoryid === id);
   return products.length > 0 ? products : undefined;
   }
@@ -52,5 +57,10 @@ export class ProductsService {
   getProductById(id:number){
     const product = this.product.find(p => p.id === id);
     return product;
+  }
+  getAllBenzerUrunler(categoryid:number):productsModel[] | undefined{
+    this.generateSlug();
+    const products = this.product.filter(product => product.categoryid === categoryid);
+  return products.length > 0 ? products : undefined;
   }
 }

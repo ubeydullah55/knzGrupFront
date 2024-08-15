@@ -42,5 +42,7 @@ export class DetailproductComponent implements OnInit {
   urunEkleToplu(item:any){
     this.cartService.urunEkleToplu(item);    
   }
-
+  benzerUrunler(){
+    return this.productsService.getAllBenzerUrunler(this.urlid);
+  }
 }
