@@ -28,7 +28,8 @@ export class ProductsService {
     { id: 17, name: 'Dynama',price:72,imgfile:'assets/cozastore-master/images/product-06.jpg',description:'denem ürün yazısı buraya uzun uzun yazılar yazılacak ürün hakkında detaylı bilgi',count:0,slug:"",categoryid:3 },
     { id: 18, name: 'Dr. IQ',price:12,imgfile:'assets/cozastore-master/images/product-07.jpg',description:'denem ürün yazısı buraya uzun uzun yazılar yazılacak ürün hakkında detaylı bilgi',count:0,slug:"",categoryid:3 },
     { id: 19, name: 'Magma',price:5,imgfile:'assets/cozastore-master/images/product-08.jpg',description:'denem ürün yazısı buraya uzun uzun yazılar yazılacak ürün hakkında detaylı bilgi',count:0,slug:"",categoryid:3 },
-    { id: 20, name: 'Tornado',price:8,imgfile:'assets/cozastore-master/images/product-09.jpg',description:'denem ürün yazısı buraya uzun uzun yazılar yazılacak ürün hakkında detaylı bilgi',count:0,slug:"",categoryid:3 }
+    { id: 20, name: 'Tornado',price:8,imgfile:'assets/cozastore-master/images/product-09.jpg',description:'denem ürün yazısı buraya uzun uzun yazılar yazılacak ürün hakkında detaylı bilgi',count:0,slug:"",categoryid:3 },
+    { id: 21, name: 'Lumo',price:8,imgfile:'assets/cozastore-master/images/product-09.jpg',description:'denem ürün yazısı buraya uzun uzun yazılar yazılacak ürün hakkında detaylı bilgi',count:0,slug:"",categoryid:3 }
   ];
 
   generateSlug() {

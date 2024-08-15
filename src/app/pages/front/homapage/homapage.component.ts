@@ -15,4 +15,5 @@ export class HomapageComponent {
   trackById(index: number, item: any): number {
     return item.id; // Her öğe için benzersiz olan ID'yi döndür
   }
+  
 }
