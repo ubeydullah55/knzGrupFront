@@ -29,7 +29,11 @@ public product :productsModel[]=[];
 
    if (existingProduct) {
      // Ürün zaten varsa, count'u artır
-     existingProduct.count += 1;
+     if (existingProduct.count !== undefined && existingProduct.count !== null) {
+      existingProduct.count += 1;
+    } else {
+      existingProduct.count = 1;
+    }
    } else {
      // Ürün yoksa, yeni bir ürün olarak ekle
      let products = new productsModel();
@@ -184,7 +188,8 @@ public product :productsModel[]=[];
 totalPrice() : number{
   let totalPrice = 0;
   for (const item of this.product) {
-    totalPrice += item.price * item.count; // Fiyat ve miktar çarpımını toplama ekle
+      const itemCount = item.count || 0; // Eğer item.count undefined ise, 0 olarak kabul edilir
+      totalPrice += item.price * itemCount; // Fiyat ve miktar çarpımını toplama ekle
   }
   return totalPrice;
 }

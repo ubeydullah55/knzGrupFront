@@ -5,7 +5,7 @@ export class productsModel
     price:number;
     imgfile:string;
     description:string;
-    count:number;
+    count?:number;
     slug:string;
     categoryid:number;
 }

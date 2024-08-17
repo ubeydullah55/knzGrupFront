@@ -1,49 +1,41 @@
-
-        <!-- Product section-->
-        <section class="py-5">
-            <div class="container px-4 px-lg-5 my-5">
-                <div class="row gx-4 gx-lg-5 align-items-center">
-                    <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="{{item.imgfile}}" alt="..." /></div>
-                    <div class="col-md-6">
-                    
-                        <h1 class="display-3 fw-bolder">{{item.name}}</h1>
-                        <h1 class="display-5 fw-bolder">₺{{item.price}}</h1>
-                        <br>
-                        <p class="lead">{{item.description}}</p>
-                                       <br> 
-                        <div class="d-flex" >
-
-                            <div class="wrap-num-product flex-w">
-                                <div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m" (click)="changeQuantity(item, -1)">
-                                   <i class="fs-16 zmdi zmdi-minus"></i>
-                                </div>
-                 
-                                <input class="mtext-104 cl3 txt-center num-product"
-                                        type="number"
-                                         [ngModel]="item.count || 1"
-                                        (ngModelChange)="updateQuantity(item, $event)"
-                                         name="num-product-{{item.id}}">
-                 
-                                <div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m" (click)="changeQuantity(item, 1)">
-                                   <i class="fs-16 zmdi zmdi-plus"></i>
-                                </div>
-                             </div>
-                          
-                        </div>
-                        <br>
-                        <div class="d-flex" >
-                            <button (click)="urunEkleToplu(item)" class="btn btn-outline-primary btn-lg flex-shrink-0" type="button">
-                                <i class="bi-cart-fill me-1"></i>
-                               Sepete Ekle
-                            </button>
-                        </div>
-                    </div>
-                </div>
+<!-- Ürün bölümü -->
+<section class="py-5">
+    <div class="container px-4 px-lg-5 my-5">
+      <div class="row gx-4 gx-lg-5 align-items-center">
+        <ng-container *ngIf="item; else loading">
+          <div class="col-md-6">
+            <img class="img-fluid mb-5 mb-md-0" [src]="'assets/cozastore-master/images/products/' + item.imgfile" alt="{{item.name}}" />
+          </div>
+          <div class="col-md-6">
+            <h1 class="display-3 fw-bolder">{{item.name}}</h1>
+            <h1 class="display-5 fw-bolder">₺{{item.price}}</h1>
+            <br>
+            <p class="lead">{{item.description}}</p>
+            <br>
+            <div class="d-flex align-items-center">
+              <div class="wrap-num-product d-flex align-items-center">
+                <button class="btn-num-product-down cl8 hov-btn3 trans-04" (click)="changeQuantity(item, -1)">
+                  <i class="fs-16 zmdi zmdi-minus"></i>
+                </button>
+                <input class="mtext-104 cl3 txt-center num-product" type="number" [ngModel]="item.count || 1" (ngModelChange)="updateQuantity(item, $event)" name="num-product-{{item.id}}">
+                <button class="btn-num-product-up cl8 hov-btn3 trans-04" (click)="changeQuantity(item, 1)">
+                  <i class="fs-16 zmdi zmdi-plus"></i>
+                </button>
+              </div>
             </div>
-        </section>
-        <!-- Related items section ikinci aşamada eklenebilir-->
-         
-   
-
-
-
+            <br>
+            <div class="d-flex">
+              <button (click)="urunEkleToplu(item)" class="btn btn-outline-primary btn-lg flex-shrink-0" type="button">
+                <i class="bi-cart-fill me-1"></i>
+                Sepete Ekle
+              </button>
+            </div>
+          </div>
+        </ng-container>
+        <ng-template #loading>
+          <p>Yükleniyor...</p>
+        </ng-template>
+      </div>
+    </div>
+  </section>
+  

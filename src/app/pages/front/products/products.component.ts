@@ -6,6 +6,10 @@ import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { DataService } from '../../../services/data-service.service';
 import { CategoryService } from '../../../services/category.service';
+
+
+import { categoryModel } from '../../../models/categoryModel';
+
 @Component({
   selector: 'app-products',
   standalone: true,
@@ -30,5 +34,5 @@ export class ProductsComponent {
   urunSil(id:number){
     this.cartService.urunSil(id);
   }
-  
+
 }

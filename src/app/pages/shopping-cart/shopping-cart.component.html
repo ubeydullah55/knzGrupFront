@@ -42,7 +42,7 @@
                                         </div>
                                      </div>
                                   </td>
-                                  <td class="column-5">₺ {{item.price * item.count}}</td>
+                                  <td class="column-5">₺ {{ (item.price || 0) * (item.count || 0) }}</td>
                                </tr>
                             }
                      
