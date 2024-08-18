@@ -22,7 +22,7 @@ export class LoginComponent {
       this.loginControl();
       // Form verilerini işleme kodu
       if(sessionStorage.getItem('loginControl')=='true'){
-        Swal.fire('Gönderim Başarılı', "Giriş başarılı... !", "success");
+        Swal.fire('Başarı', "Giriş başarılı... !", "success");
         this.redirectToPanel();
       }
      else
