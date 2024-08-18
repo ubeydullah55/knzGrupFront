@@ -111,7 +111,13 @@
                             <div class="d-flex align-items-center mb-3">
                                 <i class="fa fa-phone-square fa-2x" aria-hidden="true" style="margin-right: 5%;"></i>
                                 <div class="bor8 bg0 flex-grow-1">
-                                    <input class="stext-111 cl8 plh3 size-111 p-lr-15" type="number" name="telefon" placeholder="Telefon Numaranız" [(ngModel)]="formData.telefon" required>
+                                    <input class="stext-111 cl8 plh3 size-111 p-lr-15" 
+                                           type="text" 
+                                           name="telefon" 
+                                           placeholder="Sıfır Olmadan" 
+                                           [(ngModel)]="formData.telefon" 
+                                           maxlength="10"  
+                                           required>
                                 </div>
                             </div>
 

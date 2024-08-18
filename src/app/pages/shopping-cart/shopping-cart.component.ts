@@ -32,15 +32,16 @@ export class ShoppingCartComponent {
     this.cartService.updateItem(item); // Hizmet metodunu güncelleyebilirsiniz
   }
   getForm(form: any){
-    if (form.valid) {
+    if (form.valid && this.cartService.totalPricePost>0) {
       // Form valid, proceed with submission
-      console.log('Form Data:', this.formData);
+     
       this.teklifAl();
       
-      // Perform the submission or other actions with formData here
-      Swal.fire('Başarı', 'Form başarıyla gönderildi!', 'success');
+      
+      
       this.cartService.sepetSifirla();
-      window.location.reload();
+      //window.location.reload();
+      Swal.fire('Başarı', 'Teklifiniz başarıyla gönderildi.En kısa zamanda iletişim bilgileriniz üzerinden sizinle iletişime geçilecektir...', 'success');
     } else {
       // Form invalid, show error
       if (!this.formData.adSoyad) {
@@ -49,10 +50,13 @@ export class ShoppingCartComponent {
         Swal.fire('Hata', 'Geçerli bir e-posta adresi girin!', 'error');
       } else if (!this.formData.telefon) {
         Swal.fire('Hata', 'Telefon numarası boş olamaz!', 'error');
+      }else if (this.cartService.totalPricePost<=0) {
+        Swal.fire('Hata', 'Seçili ürün yok!', 'error');
       }
     }
   }
   teklifAl(){
+    this.cartService.formData=this.formData;
     this.cartService.teklifAl();
   }
   private isValidEmail(email: string): boolean {

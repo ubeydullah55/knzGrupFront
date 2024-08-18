@@ -2,14 +2,29 @@ import { Injectable } from '@angular/core';
 import { json } from 'stream/consumers';
 import { productsModel } from '../models/productModel';
 import Swal from 'sweetalert2';
-
+import { teklifModel } from '../models/teklifModel';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { teklifPostModel } from '../models/teklifPostModel';
+import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
 
 public product :productsModel[]=[];
-  constructor() {
+public teklifBilgi:teklifModel[]=[];
+public teklifPost:teklifPostModel[]=[];
+public postJsonValue:any;
+totalPricePost = 0;
+curDate=new Date();
+//categories$=this.getAllCategoryApi();
+  api_url='https://localhost:7266/api';
+formData = {
+  adSoyad: '',
+  mail: '',
+  telefon: ''
+};
+  constructor(private http: HttpClient) {
     if(typeof localStorage !== 'undefined')
     {
       const data=localStorage.getItem('urunEklemesession');
@@ -20,7 +35,28 @@ public product :productsModel[]=[];
     }
    }
   
+   getPostTeklifApi() {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json' // 'Content-Type' başlığı doğru şekilde ayarlandı
+    });
+    const body = {
+      name: this.formData.adSoyad,
+      mail: this.formData.mail,
+      tel: String(this.formData.telefon),
+      tarih: this.curDate,
+      totalprice: this.totalPricePost
+    };
 
+    this.http.post<{ id: number}>(this.api_url, body, { headers }).subscribe(
+      (data) => {
+        console.log(data); // Gelen yanıtı konsola yazdırıyoruz
+        const siparisid = data.id;
+      },
+      (error) => {
+        console.error('Hata oluştu:', error); // Olası hataları konsola yazdırıyoruz
+      }
+    );
+  }
   urunEkle(item:any)
   {
    
@@ -191,9 +227,11 @@ totalPrice() : number{
       const itemCount = item.count || 0; // Eğer item.count undefined ise, 0 olarak kabul edilir
       totalPrice += item.price * itemCount; // Fiyat ve miktar çarpımını toplama ekle
   }
+  this.totalPricePost=totalPrice;
   return totalPrice;
 }
 teklifAl(){
+   this.getPostTeklifApi();
   for (const item of this.product) {
      console.log(item);
   }
