@@ -6,6 +6,7 @@ import { teklifModel } from '../models/teklifModel';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { teklifPostModel } from '../models/teklifPostModel';
 import { Observable } from 'rxjs';
+import { count } from 'console';
 @Injectable({
   providedIn: 'root'
 })
@@ -16,9 +17,11 @@ public teklifBilgi:teklifModel[]=[];
 public teklifPost:teklifPostModel[]=[];
 public postJsonValue:any;
 totalPricePost = 0;
+siparisidPost=0;
 curDate=new Date();
-//categories$=this.getAllCategoryApi();
-  api_url='https://localhost:7266/api';
+
+  api_url='https://localhost:7266/api/siparis';
+  api_url_detay='https://localhost:7266/api/siparisdetay';
 formData = {
   adSoyad: '',
   mail: '',
@@ -36,6 +39,8 @@ formData = {
    }
   
    getPostTeklifApi() {
+    
+    console.log(this.product);
     const headers = new HttpHeaders({
       'Content-Type': 'application/json' // 'Content-Type' başlığı doğru şekilde ayarlandı
     });
@@ -43,20 +48,45 @@ formData = {
       name: this.formData.adSoyad,
       mail: this.formData.mail,
       tel: String(this.formData.telefon),
-      tarih: this.curDate,
+      tarih: this.curDate,  
       totalprice: this.totalPricePost
     };
 
     this.http.post<{ id: number}>(this.api_url, body, { headers }).subscribe(
       (data) => {
-        console.log(data); // Gelen yanıtı konsola yazdırıyoruz
-        const siparisid = data.id;
+    
+       sessionStorage.setItem('siparisidPost', data.id.toString());
       },
       (error) => {
         console.error('Hata oluştu:', error); // Olası hataları konsola yazdırıyoruz
       }
     );
   }
+
+  getPostDetay(){
+    const siparisidpostt = sessionStorage.getItem('siparisidPost');
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+
+    this.product.forEach((item) => {
+      const body = {
+        siparisid: Number(siparisidpostt),  // product içindeki siparisid kullanılıyor
+        productid: item.id,         // product içindeki id kullanılıyor
+        count: item.count,          // product içindeki count kullanılıyor
+      };
+      console.log("gidecek ürün"+item.name);
+      this.http.post(this.api_url_detay, body, { headers }).subscribe(
+        (data) => {
+  
+        },
+        (error) => {
+          console.error('Hata oluştu:', error); // Olası hataları konsola yazdırıyoruz
+        }
+      );
+    });
+  }
+
   urunEkle(item:any)
   {
    
@@ -232,9 +262,8 @@ totalPrice() : number{
 }
 teklifAl(){
    this.getPostTeklifApi();
-  for (const item of this.product) {
-     console.log(item);
-  }
+   this. getPostDetay();
+
 }
 
 }
