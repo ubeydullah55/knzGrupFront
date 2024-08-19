@@ -50,7 +50,7 @@
 
 			<div *ngFor="let item of productsService.productsApi$ | async; trackBy: trackById" class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item {{item.categoryid}}">
 			<!-- Block2 -->
-			<div class="block2">
+			<div class="block2" style="border: 1px solid #ddd; padding: 10px; border-radius: 5px;">
 				<div class="block2-pic hov-img0">	
 				<img [src]="'assets/cozastore-master/images/products/' + item.imgfile" loading="lazy" alt="IMG-PRODUCT">
 				
@@ -69,14 +69,13 @@
 					<span class="stext-105 cl3">
 					<b>₺{{ item.price }}</b>
 					</span>
+					<button (click)="urunEkle(item)" type="button" class="btn btn-outline-success btn-m btn-block">
+						<i class="bi bi-cart3"></i>
+						Sepete Ekle
+						</button>  
 				</div>
 		
-				<div class="block2-txt-child2 flex-r p-t-3">
-					<button (click)="urunEkle(item)" type="button" class="btn btn-outline-success">
-					<i class="bi bi-cart3"></i>
-					Sepete Ekle
-					</button>  
-				</div>
+				
 				</div>
 			</div>
 			</div>
