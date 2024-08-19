@@ -30,7 +30,7 @@ export class PanelComponent implements OnInit{
     // Yükleme tamamlandıktan sonra tabloyu başlatın
     setTimeout(() => {
       new DataTable("#datatablesSimple", {
-        perPage: 10,
+        perPage: 25,
         perPageSelect: [10, 25, 50, 100],
         searchable: true,
         sortable: true
