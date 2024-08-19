@@ -30,8 +30,12 @@
                                   </tr>
 
                                 <tr class="table_row">
-                                    <td class="column-1"></td>
-                                    <td class="column-2"></td>
+                                    <td class="column-1" colspan="2"><h2>Müşteri Bilgileri</h2>
+                                        <p>Sipariş ID: {{ musteriBilgi.siparisid }}</p>
+                                        <p>Müşteri Adı: {{ musteriBilgi.name }}</p>
+                                        <p>Müşteri Email: {{ musteriBilgi.mail }}</p>
+                                        <p>Müşteri Telefon: {{ musteriBilgi.tel }}</p></td>
+                                    
                                     <td class="column-3"></td> 
                                     <td class="column-4"><b>TOPLAM VERİLEN FİYAT:</b></td>
                                     <td class="column-5"><b>₺ {{totalPrice()}}</b></td>
