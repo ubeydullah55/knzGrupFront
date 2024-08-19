@@ -34,12 +34,7 @@ export class ShoppingCartComponent {
   getForm(form: any){
     if (form.valid && this.cartService.totalPricePost>0) {
       // Form valid, proceed with submission
-     
       this.teklifAl();
-      
-      
-      
-      this.cartService.sepetSifirla();
       //window.location.reload();
       Swal.fire('Başarı', 'Teklifiniz başarıyla gönderildi.En kısa zamanda iletişim bilgileriniz üzerinden sizinle iletişime geçilecektir...', 'success');
     } else {

@@ -20,7 +20,7 @@
                                <tr class="table_row">
                                   <td class="column-1">
                                      <div class="how-itemcart1">
-                                        <img src="{{item.imgfile}}" alt="IMG">
+                                        <img [src]="'assets/cozastore-master/images/products/' + item.imgfile" loading="lazy" alt="IMG-PRODUCT">
                                      </div>
                                   </td>
                                   <td class="column-2">{{item.name}}</td>

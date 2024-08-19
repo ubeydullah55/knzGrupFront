@@ -7,12 +7,15 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { teklifPostModel } from '../models/teklifPostModel';
 import { Observable } from 'rxjs';
 import { count } from 'console';
+import { map, catchError } from 'rxjs/operators';
+import { of } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
 
 public product :productsModel[]=[];
+public product2 :productsModel[]=[];
 public teklifBilgi:teklifModel[]=[];
 public teklifPost:teklifPostModel[]=[];
 public postJsonValue:any;
@@ -33,17 +36,17 @@ formData = {
       const data=localStorage.getItem('urunEklemesession');
       if(data){
         this.product=JSON.parse(data);
+        this.product2=JSON.parse(data);
       }
     
     }
    }
   
    getPostTeklifApi() {
-    
-    console.log(this.product);
     const headers = new HttpHeaders({
       'Content-Type': 'application/json' // 'Content-Type' başlığı doğru şekilde ayarlandı
     });
+  
     const body = {
       name: this.formData.adSoyad,
       mail: this.formData.mail,
@@ -51,40 +54,39 @@ formData = {
       tarih: this.curDate,  
       totalprice: this.totalPricePost
     };
-
-    this.http.post<{ id: number}>(this.api_url, body, { headers }).subscribe(
-      (data) => {
-    
-       sessionStorage.setItem('siparisidPost', data.id.toString());
-      },
-      (error) => {
-        console.error('Hata oluştu:', error); // Olası hataları konsola yazdırıyoruz
-      }
+  
+    return this.http.post<{ id: number }>(this.api_url, body, { headers }).pipe(
+      map((data) => {
+        sessionStorage.setItem('siparisidPost', data.id.toString());
+        return data.id;
+      }),
+      catchError((error) => {
+        console.error('Hata oluştu:', error);
+        return of(null); // Hata durumunda null döndürüyoruz
+      })
     );
   }
 
-  getPostDetay(){
-    const siparisidpostt = sessionStorage.getItem('siparisidPost');
+  getPostDetay(siparisid: number){
     const headers = new HttpHeaders({
       'Content-Type': 'application/json'
     });
-
     this.product.forEach((item) => {
       const body = {
-        siparisid: Number(siparisidpostt),  // product içindeki siparisid kullanılıyor
-        productid: item.id,         // product içindeki id kullanılıyor
-        count: item.count,          // product içindeki count kullanılıyor
+        siparisid: siparisid,  // product içindeki siparisid kullanılıyor
+        productid: item.id,    // product içindeki id kullanılıyor
+        count: item.count,     // product içindeki count kullanılıyor
       };
-      console.log("gidecek ürün"+item.name);
       this.http.post(this.api_url_detay, body, { headers }).subscribe(
         (data) => {
-  
+          // Başarılı POST işleminde yapılacaklar
         },
         (error) => {
-          console.error('Hata oluştu:', error); // Olası hataları konsola yazdırıyoruz
+          console.error('Hata oluştu:', error);
         }
       );
     });
+    this.sepetSifirla();
   }
 
   urunEkle(item:any)
@@ -261,9 +263,12 @@ totalPrice() : number{
   return totalPrice;
 }
 teklifAl(){
-   this.getPostTeklifApi();
-   this. getPostDetay();
-
+  this.getPostTeklifApi().subscribe((siparisid) => {
+    if (siparisid !== null) {
+      this.getPostDetay(siparisid);
+    }
+  });
+  
 }
 
 }
