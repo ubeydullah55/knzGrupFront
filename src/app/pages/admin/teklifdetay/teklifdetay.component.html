@@ -1,3 +1,4 @@
+
 <form class="bg0 p-t-75 p-b-85">
     <div class="container">
         <div class="row">
@@ -15,20 +16,19 @@
                                </tr>
                             </thead>
                             <tbody>
-                                @for(item of getir();track item.productid) 
-                                {
-                               <tr class="table_row">
-                                  <td class="column-1">
-                                     <div class="how-itemcart1">
-                                        <img src="assets/cozastore-master/images/{{item.productimg}}" alt="IMG">
-                                     </div>
-                                  </td>
-                                  <td class="column-2">{{item.productname}}</td>
-                                  <td class="column-3">₺ {{item.productprice}}</td>
-                                  <td class="column-4" style="text-align: center;">{{item.count}}</td>
-                                  <td class="column-5">₺ {{item.productprice * item.count}}</td>
-                               </tr>
-                                }
+                            
+                                <tr *ngFor="let item of urunList; trackBy: trackById" class="table_row">
+                                    <td class="column-1">
+                                      <div class="how-itemcart1">
+                                        <img [src]="'assets/cozastore-master/images/products/' + item.imgfile" alt="IMG">
+                                      </div>
+                                    </td>
+                                    <td class="column-2">{{item.name}}</td>
+                                    <td class="column-3">₺ {{item.price}}</td>
+                                    <td class="column-4" style="text-align: center;">{{item.count}}</td>
+                                    <td class="column-5">₺ {{ (item.price ?? 0) * (item.count ?? 0) }}</td>
+                                  </tr>
+
                                 <tr class="table_row">
                                     <td class="column-1"></td>
                                     <td class="column-2"></td>

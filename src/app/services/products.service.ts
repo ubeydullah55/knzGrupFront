@@ -10,6 +10,7 @@ import { map } from 'rxjs';
 })
 export class ProductsService {
   productsApi$=this.getAllProductsApi();
+
   api_url='https://localhost:7266/api';
 
   constructor(private http: HttpClient) { }
@@ -65,5 +66,6 @@ export class ProductsService {
   private generateSlugApi(name: string): string {
     return name.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '');
   }
+  
   
 }
