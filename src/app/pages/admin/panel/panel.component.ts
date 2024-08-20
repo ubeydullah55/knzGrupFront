@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { OnInit } from '@angular/core';
 import { DataTable } from 'simple-datatables';
 import { RouterModule } from '@angular/router'; // Import RouterModule
+import { AppConfig } from '../../../config/app.config';
 @Component({
   selector: 'app-panel',
   standalone: true,
@@ -14,7 +15,7 @@ import { RouterModule } from '@angular/router'; // Import RouterModule
 })
 export class PanelComponent implements OnInit{
 
-  api_url='https://localhost:7266/api/siparis';
+  api_url = `${AppConfig.apiUrl}/siparis`;
   siparisApi$=this.getAllSiparisApi();
 
   siparis: teklifModel[] = [];
@@ -35,7 +36,7 @@ export class PanelComponent implements OnInit{
         searchable: true,
         sortable: true
       });
-    }, 0);
+    }, 200);
   }
 
   getAllSiparisApi(){

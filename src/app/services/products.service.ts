@@ -4,14 +4,17 @@ import { HttpClient,HttpClientModule } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 import { map } from 'rxjs';
+import { AppConfig } from '../config/app.config';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductsService {
+  api_url = `${AppConfig.apiUrl}/products`;
   productsApi$=this.getAllProductsApi();
 
-  api_url='https://localhost:7266/api';
+  //api_url='https://localhost:7266/api';
+  
 
   constructor(private http: HttpClient) { }
 
@@ -53,7 +56,7 @@ export class ProductsService {
   }
 
   public getAllProductsApi(): Observable<productsModel[]>{
-    return this.http.get<productsModel[]>('https://localhost:7266/api/products')
+    return this.http.get<productsModel[]>(this.api_url)
       .pipe(
         map(products => 
           products.map(product => ({

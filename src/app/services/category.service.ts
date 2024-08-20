@@ -4,13 +4,15 @@ import { categoryModel } from '../models/categoryModel';
 import { HttpClient,HttpClientModule } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
+import { AppConfig } from '../config/app.config';
 @Injectable({
   providedIn: 'root'
 })
 export class CategoryService {
-
+  api_url = `${AppConfig.apiUrl}/categories`;
   categories$=this.getAllCategoryApi();
-  api_url='https://localhost:7266/api';
+  //api_url='https://localhost:7266/api';
+  
 
   constructor(private http: HttpClient) { }
 
@@ -26,6 +28,7 @@ export class CategoryService {
   }
 
   public getAllCategoryApi(): Observable<categoryModel[]>{
-    return this.http.get<categoryModel[]>('https://localhost:7266/api/categories');
+    console.log("gelenapi"+this.api_url);
+    return this.http.get<categoryModel[]>(this.api_url);
   }
 }

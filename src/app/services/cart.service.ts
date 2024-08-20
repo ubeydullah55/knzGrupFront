@@ -9,6 +9,7 @@ import { Observable } from 'rxjs';
 import { count } from 'console';
 import { map, catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
+import { AppConfig } from '../config/app.config';
 @Injectable({
   providedIn: 'root'
 })
@@ -23,8 +24,10 @@ totalPricePost = 0;
 siparisidPost=0;
 curDate=new Date();
 
-  api_url='https://localhost:7266/api/siparis';
-  api_url_detay='https://localhost:7266/api/siparisdetay';
+  //api_url='https://localhost:7266/api/siparis';
+  api_url = `${AppConfig.apiUrl}/siparis`;
+  api_url_detay = `${AppConfig.apiUrl}/siparisdetay`;
+  //api_url_detay='https://localhost:7266/api/siparisdetay';
 formData = {
   adSoyad: '',
   mail: '',

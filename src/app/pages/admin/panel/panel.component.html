@@ -35,12 +35,12 @@
                         </tr>
                         <!-- Data rows -->
                         <tr *ngFor="let item of siparis">
-                            <td><a [routerLink]="['/admin/teklif-detay', item.siparisid]" [queryParams]="{ siparisid : item.siparisid,name: item.name, mail: item.mail, tel: item.tel }">#{{item.siparisid}}</a></td>
-                            <td>{{item.name}}</td>
-                            <td>{{item.mail}}</td>
-                            <td>{{item.tel}}</td>
-                            <td>{{item.tarih}}</td>
-                            <td>{{item.totalprice}}₺</td>
+                            <td style="text-align: center;"><a [routerLink]="['/admin/teklif-detay', item.siparisid]" [queryParams]="{ siparisid : item.siparisid,name: item.name, mail: item.mail, tel: item.tel }">#{{item.siparisid}}</a></td>
+                            <td style="text-align: center;">{{item.name}}</td>
+                            <td style="text-align: center;">{{item.mail}}</td>
+                            <td style="text-align: center;">{{item.tel}}</td>
+                            <td style="text-align: center;">{{item.tarih}}</td>
+                            <td style="text-align: center;">{{item.totalprice}}₺</td>
                         </tr>
                     </tbody>
                 </table>
