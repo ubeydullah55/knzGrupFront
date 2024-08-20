@@ -28,7 +28,6 @@ export class CategoryService {
   }
 
   public getAllCategoryApi(): Observable<categoryModel[]>{
-    console.log("gelenapi"+this.api_url);
     return this.http.get<categoryModel[]>(this.api_url);
   }
 }

@@ -22,16 +22,9 @@ export class ProductsService {
 
 
   public productHome :productsModel[]=[
-    { id: 12, name: 'Dr. Nice',price:55,imgfile:'assets/cozastore-master/images/products/product-01.jpg',description:'denem ürün yazısı buraya uzun uzun yazılar yazılacak ürün hakkında detaylı bilgi',count:0,slug:"",categoryid:1 },
-    { id: 13, name: 'Bombasto',price:43,imgfile:'assets/cozastore-master/images/products/product-02.jpg',description:'denem ürün yazısı buraya uzun uzun yazılar yazılacak ürün hakkında detaylı bilgi',count:0,slug:"",categoryid:1 },
-    { id: 14, name: 'Celeritas',price:189,imgfile:'assets/cozastore-master/images/products/product-03.jpg',description:'denem ürün yazısı buraya uzun uzun yazılar yazılacak ürün hakkında detaylı bilgi',count:0,slug:"",categoryid:1 },
-    { id: 15, name: 'Magneta',price:121,imgfile:'assets/cozastore-master/images/products/product-04.jpg',description:'denem ürün yazısı buraya uzun uzun yazılar yazılacak ürün hakkında detaylı bilgi',count:0,slug:"",categoryid:1 },
-    { id: 16, name: 'RubberMan',price:234,imgfile:'assets/cozastore-master/images/products/product-05.jpg',description:'denem ürün yazısı buraya uzun uzun yazılar yazılacak ürün hakkında detaylı bilgi',count:0,slug:"",categoryid:2},
-    { id: 17, name: 'Dynama',price:72,imgfile:'assets/cozastore-master/images/products/product-06.jpg',description:'denem ürün yazısı buraya uzun uzun yazılar yazılacak ürün hakkında detaylı bilgi',count:0,slug:"",categoryid:3 },
-    { id: 18, name: 'Dr. IQ',price:12,imgfile:'assets/cozastore-master/images/products/product-07.jpg',description:'denem ürün yazısı buraya uzun uzun yazılar yazılacak ürün hakkında detaylı bilgi',count:0,slug:"",categoryid:3 },
-    { id: 19, name: 'Magma',price:5,imgfile:'assets/cozastore-master/images/products/product-08.jpg',description:'denem ürün yazısı buraya uzun uzun yazılar yazılacak ürün hakkında detaylı bilgi',count:0,slug:"",categoryid:3 },
-    { id: 20, name: 'Tornado',price:8,imgfile:'assets/cozastore-master/images/products/product-09.jpg',description:'denem ürün yazısı buraya uzun uzun yazılar yazılacak ürün hakkında detaylı bilgi',count:0,slug:"",categoryid:3 },
-    { id: 21, name: 'Lumo',price:8,imgfile:'assets/cozastore-master/images/products/product-09.jpg',description:'denem ürün yazısı buraya uzun uzun yazılar yazılacak ürün hakkında detaylı bilgi',count:0,slug:"",categoryid:3 }
+    { id: 12, name: 'İşci Nevresim Takımı',price:55,imgfile:'assets/cozastore-master/images/blogs/nevresim_takimi.jpg',description:'denem ürün yazısı buraya uzun uzun yazılar yazılacak ürün hakkında detaylı bilgi',count:0,slug:"",categoryid:1 },
+    { id: 13, name: 'İşçi Ranzası',price:43,imgfile:'assets/cozastore-master/images/blogs/knzgrup_isci_yatagi.jpg',description:'denem ürün yazısı buraya uzun uzun yazılar yazılacak ürün hakkında detaylı bilgi',count:0,slug:"",categoryid:1 },
+    { id: 14, name: 'İşci Yatağı',price:189,imgfile:'assets/cozastore-master/images/blogs/santiye_yatak.jpg',description:'denem ürün yazısı buraya uzun uzun yazılar yazılacak ürün hakkında detaylı bilgi',count:0,slug:"",categoryid:1 },
   ];
 
 
