@@ -24,16 +24,18 @@ export class ProductsComponent implements OnInit {
   dataService = inject(DataService);
   constructor(private router: Router) {}
   ngOnInit(): void {
-    // Sayfanın daha önce yenilenip yenilenmediğini kontrol et
-    const hasReloaded = localStorage.getItem('hasReloaded');
-  
-    if (!hasReloaded) {
-      // Yenileme işlemini gerçekleştir
-      localStorage.setItem('hasReloaded', 'true');
-      window.location.reload();
-    } else {
-      // Yenilenmişse, durumu sıfırla
-      localStorage.removeItem('hasReloaded');
+    if (typeof window !== 'undefined' && typeof localStorage !== 'undefined') {
+      // Sayfanın daha önce yenilenip yenilenmediğini kontrol et
+      const hasReloaded = localStorage.getItem('hasReloaded');
+      
+      if (!hasReloaded) {
+        // Yenileme işlemini gerçekleştir
+        localStorage.setItem('hasReloaded', 'true');
+        window.location.reload();
+      } else {
+        // Yenilenmişse, durumu sıfırla
+        localStorage.removeItem('hasReloaded');
+      }
     }
   }
   // TrackBy function for *ngFor
