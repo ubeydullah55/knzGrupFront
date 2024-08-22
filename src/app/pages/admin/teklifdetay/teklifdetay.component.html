@@ -26,7 +26,9 @@
                                     <td class="column-2">{{item.name}}</td>
                                     <td class="column-3">₺ {{item.price}}</td>
                                     <td class="column-4" style="text-align: center;">{{item.count}}</td>
-                                    <td class="column-5">₺ {{ (item.price ?? 0) * (item.count ?? 0) }}</td>
+                                    <span class="column-5">
+                                        ₺ {{ item.price && item.count ? (item.price * item.count) : 0 }}
+                                      </span>
                                   </tr>
 
                                 <tr class="table_row">

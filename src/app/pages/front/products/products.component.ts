@@ -5,7 +5,9 @@ import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { DataService } from '../../../services/data-service.service';
 import { CategoryService } from '../../../services/category.service';
-
+import { Observable } from 'rxjs';
+import { categoryModel } from '../../../models/categoryModel';
+import { productsModel } from '../../../models/productModel';
 
 @Component({
   selector: 'app-products',
@@ -17,18 +19,19 @@ import { CategoryService } from '../../../services/category.service';
 export class ProductsComponent implements OnInit {
 
   say:number=0;
+  categories$: Observable<categoryModel[]>; // Observable for categories
+  productsApi$: Observable<productsModel[]>; // Observable for products
   // Servisleri injection yoluyla al
   cartService = inject(CartService);
-  productsService = inject(ProductsService);
-  categoryService = inject(CategoryService);
   dataService = inject(DataService);
-  categories$=this.kategoriListele();
-  productsApi$=this.urunListele();
-  constructor(private router: Router) {}
+
+  constructor(private router: Router,private categoryService:CategoryService,private productsService:ProductsService) {}
   ngOnInit(): void {
     // Sayfanın daha önce yenilenip yenilenmediğini kontrol et
-    const hasReloaded = localStorage.getItem('hasReloaded');
-  
+    if (typeof window !== 'undefined') {
+      const hasReloaded = localStorage.getItem('hasReloaded');
+      // localStorage işlemlerini burada yapın
+       
     if (!hasReloaded) {
       // Yenileme işlemini gerçekleştir
       localStorage.setItem('hasReloaded', 'true');
@@ -37,6 +40,10 @@ export class ProductsComponent implements OnInit {
       // Yenilenmişse, durumu sıfırla
       localStorage.removeItem('hasReloaded');
     }
+    }
+    this.categories$ = this.categoryService.getAllCategoryApi();
+    this.productsApi$ = this.productsService.getAllProductsApi();
+ 
   }
   // TrackBy function for *ngFor
   trackById(index: number, item: any): number {
