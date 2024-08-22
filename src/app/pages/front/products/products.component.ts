@@ -22,6 +22,8 @@ export class ProductsComponent implements OnInit {
   productsService = inject(ProductsService);
   categoryService = inject(CategoryService);
   dataService = inject(DataService);
+  categories$=this.kategoriListele();
+  productsApi$=this.urunListele();
   constructor(private router: Router) {}
   ngOnInit(): void {
     // Sayfanın daha önce yenilenip yenilenmediğini kontrol et
@@ -49,5 +51,11 @@ export class ProductsComponent implements OnInit {
   // Sepetten ürün silme
   urunSil(id: number) {
     this.cartService.urunSil(id);
+  }
+  kategoriListele(){
+    return this.categoryService.getAllCategoryApi();
+  }
+  urunListele(){
+    return this.productsService.getAllProductsApi();
   }
 }

@@ -11,10 +11,6 @@ import { AppConfig } from '../config/app.config';
 })
 export class ProductsService {
   api_url = `${AppConfig.apiUrl}/products`;
-  productsApi$=this.getAllProductsApi();
-
-  //api_url='https://localhost:7266/api';
-  
 
   constructor(private http: HttpClient) { }
 

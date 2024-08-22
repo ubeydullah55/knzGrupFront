@@ -10,9 +10,6 @@ import { AppConfig } from '../config/app.config';
 })
 export class CategoryService {
   api_url = `${AppConfig.apiUrl}/categories`;
-  categories$=this.getAllCategoryApi();
-  //api_url='https://localhost:7266/api';
-  
 
   constructor(private http: HttpClient) { }
 
