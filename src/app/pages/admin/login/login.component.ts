@@ -48,7 +48,7 @@ export class LoginComponent {
     return emailPattern.test(email);
   }
   loginControl(){
-    if((this.email=='d.ubeydullah@gmail.com')&&(this.password=='123')){      
+    if((this.email=='info@knzgrup.com.tr')&&(this.password=='./2024knz-')){      
       sessionStorage.setItem('loginControl', 'true');
     }
   }
