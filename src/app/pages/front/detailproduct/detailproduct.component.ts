@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { ProductsService } from '../../../services/products.service';
 import { productsModel } from '../../../models/productModel';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-detailproduct',
@@ -17,8 +18,10 @@ import { productsModel } from '../../../models/productModel';
 export class DetailproductComponent implements OnInit {
   item: productsModel | undefined;
   urlid: number;
+  description: SafeHtml | undefined; // Güvenli HTML içeriği
   cartService = inject(CartService);
   productsService = inject(ProductsService);
+  sanitizer = inject(DomSanitizer); // DomSanitizer'ı inject ediyoruz
 
   constructor(private dataService: DataService, private route: ActivatedRoute) {}
 
@@ -29,6 +32,11 @@ export class DetailproductComponent implements OnInit {
       this.productsService.getProductById(this.urlid).subscribe({
         next: (product) => {
           this.item = product;
+
+          // Eğer item tanımlıysa, description'ı güvenli hale getir
+          if (this.item && this.item.description) {
+            this.description = this.sanitizer.bypassSecurityTrustHtml(this.item.description);
+          }
         },
         error: (err) => {
           console.error('Ürün alınırken hata oluştu:', err);

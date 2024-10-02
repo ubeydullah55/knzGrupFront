@@ -10,7 +10,7 @@
             <h1 class="display-3 fw-bolder">{{item.name}}</h1>
             <h1 class="display-5 fw-bolder" style="font-family: Tahoma, sans-serif;"><span style="background-color:yellow;">₺{{item.price}} <small style="font-size: 0.5em;">(KDV Dahildir)</small></span></h1>
             <br>
-            <p class="lead">{{item.description}}</p>
+            <p class="lead" [innerHTML]="description"></p>
             <br>
             <div class="d-flex align-items-center">
               <div class="wrap-num-product d-flex align-items-center">
