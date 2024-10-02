@@ -1,7 +1,7 @@
-import { Component, inject,OnInit } from '@angular/core';
+import { Component, Inject, inject,OnInit, PLATFORM_ID } from '@angular/core';
 import { CartService } from '../../../services/cart.service';
 import { ProductsService } from '../../../services/products.service';
-import { CommonModule } from '@angular/common';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { Router } from '@angular/router';
 import { DataService } from '../../../services/data-service.service';
 import { CategoryService } from '../../../services/category.service';
@@ -24,18 +24,21 @@ export class ProductsComponent implements OnInit {
   dataService = inject(DataService);
   categories$=this.kategoriListele();
   productsApi$=this.urunListele();
-  constructor(private router: Router) {}
+  constructor(private router: Router,@Inject(PLATFORM_ID) private platformId: Object) {}
   ngOnInit(): void {
-    // Sayfanın daha önce yenilenip yenilenmediğini kontrol et
-    const hasReloaded = localStorage.getItem('hasReloaded');
-  
-    if (!hasReloaded) {
-      // Yenileme işlemini gerçekleştir
-      localStorage.setItem('hasReloaded', 'true');
-      window.location.reload();
-    } else {
-      // Yenilenmişse, durumu sıfırla
-      localStorage.removeItem('hasReloaded');
+
+    if (isPlatformBrowser(this.platformId)) {
+      // Tarayıcı ortamında çalışıyorsa bu kodu çalıştır
+      const hasReloaded = localStorage.getItem('hasReloaded');
+    
+      if (!hasReloaded) {
+        // Yenileme işlemini gerçekleştir
+        localStorage.setItem('hasReloaded', 'true');
+        window.location.reload();
+      } else {
+        // Yenilenmişse, durumu sıfırla
+        localStorage.removeItem('hasReloaded');
+      }
     }
   }
   // TrackBy function for *ngFor
