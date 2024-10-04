@@ -12,6 +12,7 @@ import { ReferanslarComponent } from './pages/front/referanslar/referanslar.comp
 import { LoginComponent } from './pages/admin/login/login.component';
 import { PanelComponent } from './pages/admin/panel/panel.component';
 import { TeklifdetayComponent } from './pages/admin/teklifdetay/teklifdetay.component';
+import { CategoriesadminComponent } from './pages/admin/categoriesadmin/categoriesadmin.component';
 export const routes: Routes = [
     {
         path:'',
@@ -68,6 +69,10 @@ export const routes: Routes = [
     {
         path: 'admin/teklif-detay/:id',
         component: TeklifdetayComponent
+    },
+    {
+        path: 'admin/categorieslist',
+        component: CategoriesadminComponent
     },
     
 ];
