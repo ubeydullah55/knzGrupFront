@@ -1,1 +1,65 @@
-<p>category listeleme</p>
+<div class="row">
+    <div class="col-lg-1"></div>
+    <div class="col-lg-10">
+        <div class="card mb-4">
+            <div class="card-header">
+                <i class="fa fa-table me-1"></i>
+                Kategori Listesi
+            </div>
+            <div class="card-body">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col" style="text-align: center; width: 10%;">Kategori Id</th>
+                        <th scope="col" style="text-align: center;width: 70%;">Kategori Adı</th>
+                        <th scope="col" style="text-align: center;width: 20%;">Sil</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        <!-- No data available row -->
+                        <tr *ngIf="!category.length">
+                            <td colspan="3" class="text-center">No data available</td>
+                        </tr>
+                        <!-- Data rows -->
+                        <tr *ngFor="let item of category">
+                            
+                            <td style="text-align: center;vertical-align: middle;"><b>{{item.id}}</b></td>
+                            <td style="text-align: center;vertical-align: middle;"><b>{{item.name}}</b></td>
+                            <td style="text-align: center;vertical-align: middle;"><button (click)="categoryDelete(item.id)" class="btn btn-danger btn-m rounded-pill" ><i class="bi bi-trash"></i></button></td>
+                        </tr>
+                    </tbody>
+                  </table>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-1"></div>
+</div>
+<div class="row">
+    <div class="col-lg-1"></div>
+    <div class="col-lg-10">
+        <div class="card mb-4">
+            <div class="card-header">
+                <i class="fa fa-table me-1"></i>
+                Kategori Ekleme
+            </div>
+            <br>
+            <div class="row">
+            <div class="col-lg-4"></div>
+            <div class="col-lg-4">
+                <form>
+                    <div class="form-group">
+                      <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Kategori Adı Giriniz">
+                    </div>
+                    <div class="form-group">
+                      <button (click)="categoryDelete(99)" type="button" class="btn btn-success btn-lg btn-block">Kategori Ekle</button>
+                    </div>
+            
+                  </form>
+            </div>
+          
+              <div class="col-lg-4"></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-1"></div>
+</div>
