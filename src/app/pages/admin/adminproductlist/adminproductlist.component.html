@@ -34,7 +34,7 @@
                             <td style="text-align: center;vertical-align: middle;"><b>{{item.price}}₺</b></td>
                             <td style="text-align: center;vertical-align: middle;"><b>{{getCategoryName(item.categoryid)}}</b></td>
                             <td style="text-align: center;vertical-align: middle;"><button (click)="productDelete(item.id)" class="btn btn-danger btn-m rounded-pill" ><i class="bi bi-trash"></i></button></td>
-                            <td style="text-align: center;vertical-align: middle;"><a href=""><button class="btn btn-warning btn-m rounded-pill" ><i class="bi bi-pencil"></i></button></a></td>
+                            <td style="text-align: center;vertical-align: middle;"><a [routerLink]="['/admin/product-edit', item.id]"><button class="btn btn-warning btn-m rounded-pill" ><i class="bi bi-pencil"></i></button></a></td>
                         </tr>
                     </tbody>
                 </table>
