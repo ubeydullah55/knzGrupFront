@@ -1,0 +1,48 @@
+<div class="row">
+    <div class="col-lg-1"></div>
+    <div class="col-lg-10">
+        <div class="card mb-4">
+            <div class="card-header">
+                <i class="fa fa-table me-1"></i>
+                Ürün Listesi
+            </div>
+            <div class="card-body">
+                <table id="table" class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th style="text-align: center;">Ürün Resmi</th>
+                            <th style="text-align: center;">Ürün Adı</th>
+                            <th style="text-align: center;">Fiyat</th>
+                            <th style="text-align: center;">Kategori</th>
+                            <th style="text-align: center;">Sil</th>
+                            <th style="text-align: center;">Düzenle</th>
+                     
+                        </tr>
+                    </thead>
+          
+                    <tbody>
+                        <!-- No data available row -->
+                        <tr *ngIf="!product.length">
+                            <td colspan="6" class="text-center">No data available</td>
+                        </tr>
+                        <!-- Data rows -->
+                        <tr *ngFor="let item of product">
+                            <td style="text-align: center;vertical-align: middle;"> <div class="how-itemcart1"  style="display: inline-block;">
+                                <img [src]="'assets/cozastore-master/images/products/' + item.imgfile" alt="IMG">
+                              </div></td>
+                            <td style="text-align: center;vertical-align: middle;"><b>{{item.name}}</b></td>
+                            <td style="text-align: center;vertical-align: middle;"><b>{{item.price}}₺</b></td>
+                            <td style="text-align: center;vertical-align: middle;"><b>{{getCategoryName(item.categoryid)}}</b></td>
+                            <td style="text-align: center;vertical-align: middle;"><button (click)="productDelete(item.id)" class="btn btn-danger btn-m rounded-pill" ><i class="bi bi-trash"></i></button></td>
+                            <td style="text-align: center;vertical-align: middle;"><a href=""><button class="btn btn-warning btn-m rounded-pill" ><i class="bi bi-pencil"></i></button></a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-1"></div>
+</div>
+
+
+

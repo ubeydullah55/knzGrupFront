@@ -13,6 +13,7 @@ import { LoginComponent } from './pages/admin/login/login.component';
 import { PanelComponent } from './pages/admin/panel/panel.component';
 import { TeklifdetayComponent } from './pages/admin/teklifdetay/teklifdetay.component';
 import { CategoriesadminComponent } from './pages/admin/categoriesadmin/categoriesadmin.component';
+import { AdminproductlistComponent } from './pages/admin/adminproductlist/adminproductlist.component';
 export const routes: Routes = [
     {
         path:'',
@@ -73,6 +74,10 @@ export const routes: Routes = [
     {
         path: 'admin/categorieslist',
         component: CategoriesadminComponent
+    },
+    {
+        path: 'admin/productlist',
+        component: AdminproductlistComponent
     },
     
 ];
