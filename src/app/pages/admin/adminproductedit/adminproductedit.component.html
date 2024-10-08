@@ -14,6 +14,7 @@
                                 <img [src]="'assets/cozastore-master/images/products/' + product.imgfile" alt="IMG">
                               </div>
                         </div>
+                        <!--
                         <div class="form-group col-md-4">
                             <label for="exampleFormControlFile1">Example file input</label>
                             <input type="file" class="form-control-file" id="exampleFormControlFile1" (change)="onFileChange($event)">
@@ -21,6 +22,7 @@
                           <div *ngIf="imagePreviewUrl">
                             <img [src]="imagePreviewUrl" alt="Resim Önizlemesi" style="max-width: 250px; max-height: 250px;">
                         </div>
+                        -->
                     </div>
                     <div class="form-row">
                       <div class="form-group col-md-6">
@@ -43,7 +45,8 @@
                       <ckeditor 
                       *ngIf="Editor"
                       [editor]="Editor" 
-                      [data]="product.description"
+                      [data]="product.description"    
+                      (blur)="onDescriptionBlur($event)"                 
                       id="productDescription"
                       class="form-control">
                     </ckeditor>
@@ -51,7 +54,7 @@
                     <div class="form-row">
                         <div class="form-group col-md-4">
                             
-                            <button (click)="productUpdate()" class="btn btn-primary btn-lg btn-block">Kaydet</button>
+                            <button (click)="updateProduct()" class="btn btn-primary btn-lg btn-block">Kaydet</button>
                         
                         </div>
                         <div class="form-group col-md-8">

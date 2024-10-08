@@ -1,11 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { AppConfig } from '../../../config/app.config';
 import { productsModel } from '../../../models/productModel';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
+import Swal from 'sweetalert2';
+
 
 
 
@@ -94,19 +96,40 @@ export class AdminproducteditComponent implements OnInit{
     });
   }
   productUpdate(){
-    console.log(this.product);
-if(this.imagePreviewUrl){
-  const formData = new FormData();
-    formData.append('file', this.selectedFile!); // 'file' sunucu tarafında beklenen alan ismi
-    // Diğer form verilerini de ekleyebilirsiniz
-    // formData.append('productName', this.product.name);
-    
-    // HTTP istemcisi ile dosyayı gönderin
-    this.httpClient.post('API_URL', formData).subscribe((response: any) => {
-        console.log('Dosya yüklendi:', response);
-    });
-}
+    console.log("product update çalıştı"+this.product);
+    if (this.imagePreviewUrl && this.product) {
+      const formData = new FormData();
+      formData.append('file', this.selectedFile!); // Sunucu tarafında beklenen alan ismi
+      formData.append('name', this.product.name);
+      formData.append('price', this.product.price.toString());
+      formData.append('description', this.product.description);
+      formData.append('categoryid', this.product.categoryid.toString());
+      formData.append('imggfile', this.product.imgfile.toString());
   
+      // Konsol çıktısı ile gönderilen verileri kontrol et
+      console.log('Gönderilen veriler:', {
+        name: this.product.name,
+        price: this.product.price,
+        description: this.product.description,
+        categoryid: this.product.categoryid,
+        imgfile:this.product.imgfile
+      });
+  
+      this.http.put(`${this.api_url}/update/${this.product.id}`, formData).subscribe({
+        next: (response: any) => {
+          console.log('Ürün güncellendi:', response);
+        },
+        error: (err) => {
+          console.error('Ürün güncellenirken bir hata oluştu:', err);
+          // Hata mesajını ve detaylarını kontrol et
+          if (err.error && err.error.errors) {
+            console.error('Sunucudan dönen doğrulama hataları:', err.error.errors);
+          } 
+        }
+      });
+    } else {
+      console.error('Gerekli veriler eksik veya seçili dosya yok!');
+    }
 
   }
   onCategoryChange(event: Event) {
@@ -118,4 +141,79 @@ if(this.imagePreviewUrl){
   getProductApi(id: string) {
     return this.http.get<productsModel>(`${this.api_url}/${id}`); // Dinamik olarak id ile istek at
   }
+
+  addProduct() {
+
+    
+    const productData = {
+      name: this.product.name,
+      price: this.product.price,
+      imgfile: this.product.imgfile,
+      description: this.product.description,
+      categoryid: this.product.categoryid
+  };
+
+  this.http.post(this.api_url, productData).subscribe({
+      next: (response) => {
+          console.log('Ürün başarıyla eklendi:', response);
+      },
+      error: (error) => {
+          console.error('Ürün eklenirken hata oluştu:', error);
+      }
+  });
+  }
+
+
+updateProduct() {
+  console.log("Ürün güncelleme işlemi başladı", this.product);
+  
+  // Güncellenmiş ürün verisini hazırlayın, ID de dahil
+ 
+ 
+
+  Swal.fire({
+    title: 'Geçerli düzenlemeleri kaydetmek istediğinize emin misiniz?',
+    showDenyButton: true,
+    showCancelButton: false,
+    confirmButtonText: 'Evet',
+    denyButtonText: 'Hayır',
+    customClass: {
+      actions: 'my-actions',
+      cancelButton: 'order-1 right-gap',
+      confirmButton: 'order-2',
+      denyButton: 'order-3',
+    },
+  }).then((result) => {
+    if (result.isConfirmed) {
+      const productData = {
+        id: this.product.id, // ID'yi ekliyoruz
+        name: this.product.name,
+        price: this.product.price,
+        imgfile: this.product.imgfile,
+        description: this.product.description,
+        categoryid: this.product.categoryid
+    };
+    // API'ye PUT isteği gönderin
+    this.http.put(`${this.api_url}/${this.product.id}`, productData).subscribe({
+        next: (response) => {
+            console.log('Ürün başarıyla güncellendi:', response);
+            Swal.fire('Başarı', "Güncelleme başarılı... !", "success");
+            window.location.reload();
+        },
+        error: (error) => {
+            console.error('Ürün güncellenirken hata oluştu:', error);
+        }
+    });
+   
+    } else if (result.isDenied) {
+      return;
+    }
+  });
+}
+onDescriptionBlur(event: any) {
+  // CKEditor'deki veri, kullanıcı yazmayı bitirip editörden çıktığında güncellenir
+  const editorData = event.editor.getData();
+  this.product.description = editorData;
+}
+
 }
