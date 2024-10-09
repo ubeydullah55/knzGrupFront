@@ -6,6 +6,7 @@ import { OnInit } from '@angular/core';
 import { DataTable } from 'simple-datatables';
 import { RouterModule } from '@angular/router'; // Import RouterModule
 import { AppConfig } from '../../../config/app.config';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-panel',
   standalone: true,
@@ -38,7 +39,36 @@ export class PanelComponent implements OnInit{
       });
     }, 200);
   }
-
+  siparisDelete(id: number) {
+    Swal.fire({
+      title: 'Seçili siparişi silmek istediğinize emin misiniz?',
+      showDenyButton: true,
+      showCancelButton: false,
+      confirmButtonText: 'Evet',
+      denyButtonText: 'Hayır',
+      customClass: {
+        actions: 'my-actions',
+        cancelButton: 'order-1 right-gap',
+        confirmButton: 'order-2',
+        denyButton: 'order-3',
+      },
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const url = `${this.api_url}/${id}`;
+        this.http.delete(url).subscribe({
+          next: () => {
+            this.siparis = this.siparis.filter(item => item.siparisid !== id);
+          },
+          error: (err) => {
+            console.error('Silme işlemi başarısız oldu:', err);
+          }
+        });
+     
+      } else if (result.isDenied) {
+        return;
+      }
+    });
+  }
   getAllSiparisApi(){
     return this.http.get<[teklifModel]>(this.api_url);
   }

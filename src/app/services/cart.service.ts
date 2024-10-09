@@ -49,12 +49,12 @@ formData = {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json' // 'Content-Type' başlığı doğru şekilde ayarlandı
     });
-  
+    const localDate = new Date(this.curDate.getTime() - (this.curDate.getTimezoneOffset() * 60000)).toISOString();
     const body = {
       name: this.formData.adSoyad,
       mail: this.formData.mail,
       tel: String(this.formData.telefon),
-      tarih: this.curDate,  
+      tarih: localDate,  
       totalprice: this.totalPricePost
     };
   
