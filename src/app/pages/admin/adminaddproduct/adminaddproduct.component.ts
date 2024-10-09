@@ -112,7 +112,7 @@ export class AdminaddproductComponent implements OnInit{
     const productData = {
       name: this.product.name,
       price: this.product.price,
-      imgfile: this.product.imgfile,
+      imgfile: crypto.randomUUID(),
       description: this.product.description,
       categoryid: this.product.categoryid
   };
