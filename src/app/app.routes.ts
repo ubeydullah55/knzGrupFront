@@ -15,6 +15,7 @@ import { TeklifdetayComponent } from './pages/admin/teklifdetay/teklifdetay.comp
 import { CategoriesadminComponent } from './pages/admin/categoriesadmin/categoriesadmin.component';
 import { AdminproductlistComponent } from './pages/admin/adminproductlist/adminproductlist.component';
 import { AdminproducteditComponent } from './pages/admin/adminproductedit/adminproductedit.component';
+import { AdminaddproductComponent } from './pages/admin/adminaddproduct/adminaddproduct.component';
 export const routes: Routes = [
     {
         path:'',
@@ -83,5 +84,9 @@ export const routes: Routes = [
     {
         path: 'admin/product-edit/:id',
         component: AdminproducteditComponent
+    },
+    {
+        path: 'admin/addproduct',
+        component: AdminaddproductComponent
     },
 ];
