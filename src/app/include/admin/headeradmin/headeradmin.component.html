@@ -29,9 +29,6 @@
                         <li class="active-menu">
                             <a href="admin/panel">Teklif Bekleyenler</a>
                         </li>
-                        <li>
-                            <a href="admin/panel">Mesajlar</a>
-                        </li>
 
                         <li>
                             <a href="admin/categorieslist">Kategoriler</a>
@@ -39,9 +36,7 @@
                         <li>
                             <a href="admin/productlist">Ürünler</a>
                         </li>
-                        <li>
-                            <a href="admin/panel">Toplu Mail</a>
-                        </li>
+                     
                         <li>
                             <button (click)="killLoginSession()">Çıkış</button>
                         </li>
@@ -108,9 +103,6 @@
                     <i class="fa fa-angle-right" aria-hidden="true"></i>
                 </span>
             </li>
-            <li>
-                <a href="admin/panel">Mesajlar</a>
-            </li>
 
             <li>
                 <a href="admin/categorieslist">Kategoriler</a>
@@ -119,7 +111,7 @@
                 <a href="admin/productlist">Ürünler</a>
             </li>
             <li>
-                <a href="admin/panel">Toplu Mail</a>
+                <button (click)="killLoginSession()">Çıkış</button>
             </li>
         </ul>
     </div>
