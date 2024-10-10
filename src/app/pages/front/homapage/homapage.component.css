@@ -1,0 +1,23 @@
+/* Resmin taşmasını önle */
+.responsive-img {
+    max-width: 100%;
+    height: auto; /* Oranları koru */
+}
+/* Jumbotron container taşmasını önle */
+.jumbotron {
+    padding: 20px; /* Mobilde boşluklar */
+    box-sizing: border-box;
+}
+/* Küçük ekranlar için düzenleme */
+@media (max-width: 768px) {
+    .display-3 {
+        font-size: 1.8rem; /* Başlık boyutunu küçült */
+    }
+    p {
+        font-size: 1rem; /* Paragraf boyutunu küçült */
+    }
+    .container {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+}
