@@ -71,16 +71,17 @@ export class AdminaddproductComponent implements OnInit{
     }
 }
 
-  getCategories() {
-    this.http.get<{ id: number, name: string }[]>(this.categories_url).subscribe({
-      next: (data) => {
-        this.categories = data; // Kategorileri al
-      },
-      error: (err) => {
-        console.error('Kategoriler alınırken bir hata oluştu:', err);
-      }
-    });
-  }
+getCategories() {
+  const timestamp = new Date().getTime(); // Zaman damgası
+  this.http.get<{ id: number; name: string }[]>(`${this.categories_url}?t=${timestamp}`).subscribe({
+    next: (data) => {
+      this.categories = data; // Kategorileri al
+    },
+    error: (err) => {
+      console.error('Kategoriler alınırken bir hata oluştu:', err);
+    }
+  });
+}
  
 
   onCategoryChange(event: Event) {
