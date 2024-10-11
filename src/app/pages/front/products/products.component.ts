@@ -36,9 +36,13 @@ export class ProductsComponent implements OnInit {
   }
 
   // TrackBy function for *ngFor
-  trackById(index: number, item: productsModel): number {
+  trackByProductId(index: number, item: productsModel): number {
     return item.id; // Ürün ID'si ile izleme yap
-}
+  }
+
+  trackByCategoryId(index: number, item: categoryModel): number {
+    return item.id; // Kategori ID'si ile izleme yap
+  }
 
   // Sepete ürün ekleme
   urunEkle(item: any) {
