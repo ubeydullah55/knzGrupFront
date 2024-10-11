@@ -57,7 +57,8 @@ export class PanelComponent implements OnInit{
         const url = `${this.api_url}/${id}`;
         this.http.delete(url).subscribe({
           next: () => {
-            this.siparis = this.siparis.filter(item => item.siparisid !== id);
+           // this.siparis = this.siparis.filter(item => item.siparisid !== id);
+           this.getAllSiparisApi();
           },
           error: (err) => {
             console.error('Silme işlemi başarısız oldu:', err);
