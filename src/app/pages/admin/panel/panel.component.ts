@@ -17,7 +17,7 @@ import Swal from 'sweetalert2';
 export class PanelComponent implements OnInit{
 
   api_url = `${AppConfig.apiUrl}/siparis`;
-  siparisApi$=this.getAllSiparisApi();
+ // siparisApi$=this.getAllSiparisApi();
 
   siparis: teklifModel[] = [];
   constructor(private http: HttpClient) { }
