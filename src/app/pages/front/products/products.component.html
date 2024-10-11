@@ -41,7 +41,7 @@
 			 <!-- Block2 -->
 			 <div class="block2" style="border: 1px solid #ddd; padding: 10px; border-radius: 5px;">
 				<div class="block2-pic hov-img0">	
-				   <img [src]="'assets/cozastore-master/images/products/' + item.imgfile" alt="IMG-PRODUCT">
+					<img [src]="'assets/cozastore-master/images/products/' + item.imgfile + '?t=' + (new Date()).getTime()" alt="IMG-PRODUCT">
 				   <a [href]="'products/' + item.slug + '/' + item.id" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04">
 				   incele
 				   </a>
