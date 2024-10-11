@@ -27,19 +27,7 @@ export class ProductsComponent implements OnInit {
   constructor(private router: Router,@Inject(PLATFORM_ID) private platformId: Object) {}
   ngOnInit(): void {
 
-    if (isPlatformBrowser(this.platformId)) {
-      // Tarayıcı ortamında çalışıyorsa bu kodu çalıştır
-      const hasReloaded = localStorage.getItem('hasReloaded');
-    
-      if (!hasReloaded) {
-        // Yenileme işlemini gerçekleştir
-        localStorage.setItem('hasReloaded', 'true');
-        window.location.reload();
-      } else {
-        // Yenilenmişse, durumu sıfırla
-        localStorage.removeItem('hasReloaded');
-      }
-    }
+
   }
   // TrackBy function for *ngFor
   trackById(index: number, item: any): number {
