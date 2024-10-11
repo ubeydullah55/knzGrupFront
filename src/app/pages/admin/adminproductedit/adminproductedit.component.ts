@@ -141,7 +141,6 @@ updateProduct() {
     this.http.put(`${this.api_url}/${this.product.id}`, productData).subscribe({
         next: (response) => {
             Swal.fire('Başarı', "Güncelleme başarılı... !", "success");
-            this.reloadComponent();
         },
         error: (error) => {
             console.error('Ürün güncellenirken hata oluştu:', error);
@@ -153,12 +152,7 @@ updateProduct() {
     }
   });
 }
-reloadComponent() {
-  // Aynı rotaya yeniden yönlendir, böylece bileşen yeniden yüklenir
-  this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-    this.router.navigate([this.router.url]);
-  });
-}
+
 onDescriptionBlur(event: any) {
   // CKEditor'deki veri, kullanıcı yazmayı bitirip editörden çıktığında güncellenir
   const editorData = event.editor.getData();

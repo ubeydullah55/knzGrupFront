@@ -45,10 +45,12 @@ export class AdminproductlistComponent implements OnInit{
     }, 200);
   }
   getAllCategoriesApi() {
-    return this.http.get<{ id: number, name: string }[]>(this.categories_url);
+    const timestamp = new Date().getTime();  // Zaman damgası
+    return this.http.get<{ id: number, name: string }[]>(`${this.categories_url}?t=${timestamp}`);
   }
-  getAllProductApi(){
-    return this.http.get<[productsModel]>(this.api_url);
+  getAllProductApi() {
+    const timestamp = new Date().getTime();  // Zaman damgası
+    return this.http.get<productsModel[]>(`${this.api_url}?t=${timestamp}`);
   }
   getCategoryName(categoryId: number): string {
     const category = this.categories.find(cat => cat.id === categoryId);
