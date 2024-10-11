@@ -70,8 +70,9 @@ export class PanelComponent implements OnInit{
       }
     });
   }
-  getAllSiparisApi(){
-    return this.http.get<[teklifModel]>(this.api_url);
+  getAllSiparisApi() {
+    const timestamp = new Date().getTime();  // Zaman damgası
+    return this.http.get<[teklifModel]>(`${this.api_url}?t=${timestamp}`);
   }
   trackById(index: number, item: teklifModel): number {
     return item.siparisid;  // veya item.id, öğe için benzersiz bir özellik kullanın
