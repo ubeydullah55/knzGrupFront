@@ -24,7 +24,8 @@ export class CategoryService {
     return this.categoryHome;
   }
 
-  public getAllCategoryApi(): Observable<categoryModel[]>{
-    return this.http.get<categoryModel[]>(this.api_url);
+  public getAllCategoryApi(): Observable<categoryModel[]> {
+    const timestamp = new Date().getTime();  // Zaman damgası
+    return this.http.get<categoryModel[]>(`${this.api_url}?t=${timestamp}`);
   }
 }

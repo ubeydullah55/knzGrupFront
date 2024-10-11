@@ -44,8 +44,9 @@ export class ProductsService {
     );    
   }
 
-  public getAllProductsApi(): Observable<productsModel[]>{
-    return this.http.get<productsModel[]>(this.api_url)
+  public getAllProductsApi(): Observable<productsModel[]> {
+    const timestamp = new Date().getTime();  // Zaman damgası
+    return this.http.get<productsModel[]>(`${this.api_url}?t=${timestamp}`)
       .pipe(
         map(products => 
           products.map(product => ({

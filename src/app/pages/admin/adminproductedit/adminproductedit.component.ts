@@ -5,7 +5,7 @@ import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { AppConfig } from '../../../config/app.config';
 import { productsModel } from '../../../models/productModel';
 import { HttpClient } from '@angular/common/http';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
 
 
@@ -31,7 +31,7 @@ export class AdminproducteditComponent implements OnInit{
   imagePreviewUrl: string | null = null; // Önizleme URL'si için değişken
   httpClient: any;
 
-  constructor(private http: HttpClient, private route: ActivatedRoute) { }
+  constructor(private http: HttpClient, private route: ActivatedRoute,private router: Router) { }
 
   ngOnInit(): void {
     // Tarayıcı ortamında olup olmadığımızı kontrol edin
@@ -95,43 +95,7 @@ export class AdminproducteditComponent implements OnInit{
       }
     });
   }
-  productUpdate(){
-    console.log("product update çalıştı"+this.product);
-    if (this.imagePreviewUrl && this.product) {
-      const formData = new FormData();
-      formData.append('file', this.selectedFile!); // Sunucu tarafında beklenen alan ismi
-      formData.append('name', this.product.name);
-      formData.append('price', this.product.price.toString());
-      formData.append('description', this.product.description);
-      formData.append('categoryid', this.product.categoryid.toString());
-      formData.append('imggfile', this.product.imgfile.toString());
-  
-      // Konsol çıktısı ile gönderilen verileri kontrol et
-      console.log('Gönderilen veriler:', {
-        name: this.product.name,
-        price: this.product.price,
-        description: this.product.description,
-        categoryid: this.product.categoryid,
-        imgfile:this.product.imgfile
-      });
-  
-      this.http.put(`${this.api_url}/update/${this.product.id}`, formData).subscribe({
-        next: (response: any) => {
-          console.log('Ürün güncellendi:', response);
-        },
-        error: (err) => {
-          console.error('Ürün güncellenirken bir hata oluştu:', err);
-          // Hata mesajını ve detaylarını kontrol et
-          if (err.error && err.error.errors) {
-            console.error('Sunucudan dönen doğrulama hataları:', err.error.errors);
-          } 
-        }
-      });
-    } else {
-      console.error('Gerekli veriler eksik veya seçili dosya yok!');
-    }
 
-  }
   onCategoryChange(event: Event) {
     const selectElement = event.target as HTMLSelectElement; // Seçim elemanını al
     const selectedCategoryId = Number(selectElement.value); // Seçilen kategorinin ID'sini al ve number'a çevir
@@ -142,26 +106,6 @@ export class AdminproducteditComponent implements OnInit{
     return this.http.get<productsModel>(`${this.api_url}/${id}`); // Dinamik olarak id ile istek at
   }
 
-  addProduct() {
-
-    
-    const productData = {
-      name: this.product.name,
-      price: this.product.price,
-      imgfile: this.product.imgfile,
-      description: this.product.description,
-      categoryid: this.product.categoryid
-  };
-
-  this.http.post(this.api_url, productData).subscribe({
-      next: (response) => {
-          console.log('Ürün başarıyla eklendi:', response);
-      },
-      error: (error) => {
-          console.error('Ürün eklenirken hata oluştu:', error);
-      }
-  });
-  }
 
 
 updateProduct() {
@@ -196,9 +140,8 @@ updateProduct() {
     // API'ye PUT isteği gönderin
     this.http.put(`${this.api_url}/${this.product.id}`, productData).subscribe({
         next: (response) => {
-            console.log('Ürün başarıyla güncellendi:', response);
             Swal.fire('Başarı', "Güncelleme başarılı... !", "success");
-            window.location.reload();
+            this.reloadComponent();
         },
         error: (error) => {
             console.error('Ürün güncellenirken hata oluştu:', error);
@@ -208,6 +151,12 @@ updateProduct() {
     } else if (result.isDenied) {
       return;
     }
+  });
+}
+reloadComponent() {
+  // Aynı rotaya yeniden yönlendir, böylece bileşen yeniden yüklenir
+  this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+    this.router.navigate([this.router.url]);
   });
 }
 onDescriptionBlur(event: any) {

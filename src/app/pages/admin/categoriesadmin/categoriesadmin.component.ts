@@ -50,8 +50,7 @@ export class CategoriesadminComponent implements OnInit{
         const newCategory: categoryModel = this.addCategoryForm.value;
     
         this.http.post<categoryModel>(this.api_url, newCategory).subscribe({
-          next: (response) => {
-            console.log('Kategori başarıyla eklendi:', response);
+          next: (response) => {          
             this.category.push(response);
             this.addCategoryForm.reset();  // Formu temizle
           },
@@ -64,16 +63,10 @@ export class CategoriesadminComponent implements OnInit{
         return;
       }
     });
-
-
-
-
-
-
-
   }
-  getAllCategoryApi(){
-    return this.http.get<[categoryModel]>(this.api_url);
+  getAllCategoryApi() {
+    const timestamp = new Date().getTime();  // Zaman damgası ekle
+    return this.http.get<[categoryModel]>(`${this.api_url}?t=${timestamp}`);
   }
   categoryDelete(id: number) {
 
