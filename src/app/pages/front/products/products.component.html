@@ -6,7 +6,7 @@
 			 <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1" data-filter="*">
 			 Tüm Ürünler
 			 </button>
-			 <div *ngFor="let item of categories$  | async; trackBy: trackById">
+			 <div *ngFor="let item of categories; trackBy: trackById">
 				<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" [attr.data-filter]="'.' + item.id">
 				{{ item.name }}
 				</button>
@@ -37,7 +37,8 @@
 	   </div>
 	   <div class="row isotope-grid">
 		  <!-- ürünler dinamil -->
-		  <div *ngFor="let item of productsApi$ | async; trackBy: trackById" class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item {{item.categoryid}}">
+		 
+			<div *ngFor="let item of products; trackBy: trackById" class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item {{item.categoryid}}">
 			 <!-- Block2 -->
 			 <div class="block2" style="border: 1px solid #ddd; padding: 10px; border-radius: 5px;">
 				<div class="block2-pic hov-img0">	
