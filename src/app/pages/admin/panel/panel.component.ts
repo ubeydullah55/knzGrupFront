@@ -58,6 +58,8 @@ export class PanelComponent implements OnInit{
         this.http.delete(url).subscribe({
           next: () => {
            // this.siparis = this.siparis.filter(item => item.siparisid !== id);
+           Swal.fire('Başarı', "Teklif başarılı bir şekilde silindi... !", "success");
+           window.location.reload();
            this.getAllSiparisApi();
           },
           error: (err) => {

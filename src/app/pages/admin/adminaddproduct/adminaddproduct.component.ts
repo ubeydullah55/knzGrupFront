@@ -120,7 +120,7 @@ getCategories() {
 
   this.http.post(this.api_url, productData).subscribe({
       next: (response) => {
-          console.log('Ürün başarıyla eklendi:', response);
+        Swal.fire('Başarı', "Ürün başarılı bir şekilde eklendi... !", "success");
           window.location.reload();
       },
       error: (error) => {
@@ -138,12 +138,6 @@ getCategories() {
 
 
 updateProduct() {
-  console.log("Ürün güncelleme işlemi başladı", this.product);
-  
-  // Güncellenmiş ürün verisini hazırlayın, ID de dahil
- 
- 
-
   Swal.fire({
     title: 'Geçerli düzenlemeleri kaydetmek istediğinize emin misiniz?',
     showDenyButton: true,
@@ -169,7 +163,6 @@ updateProduct() {
     // API'ye PUT isteği gönderin
     this.http.put(`${this.api_url}/${this.product.id}`, productData).subscribe({
         next: (response) => {
-            console.log('Ürün başarıyla güncellendi:', response);
             Swal.fire('Başarı', "Güncelleme başarılı... !", "success");
             window.location.reload();
         },

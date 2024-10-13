@@ -109,12 +109,6 @@ export class AdminproducteditComponent implements OnInit{
 
 
 updateProduct() {
-  console.log("Ürün güncelleme işlemi başladı", this.product);
-  
-  // Güncellenmiş ürün verisini hazırlayın, ID de dahil
- 
- 
-
   Swal.fire({
     title: 'Geçerli düzenlemeleri kaydetmek istediğinize emin misiniz?',
     showDenyButton: true,
@@ -141,6 +135,7 @@ updateProduct() {
     this.http.put(`${this.api_url}/${this.product.id}`, productData).subscribe({
         next: (response) => {
             Swal.fire('Başarı', "Güncelleme başarılı... !", "success");
+            window.location.reload();
         },
         error: (error) => {
             console.error('Ürün güncellenirken hata oluştu:', error);

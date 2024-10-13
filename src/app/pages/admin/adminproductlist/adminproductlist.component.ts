@@ -60,7 +60,7 @@ export class AdminproductlistComponent implements OnInit{
   productDelete(id: number) {
 
     Swal.fire({
-      title: 'Seçili kategoriyi silmek istediğinize emin misiniz?',
+      title: 'Seçili ürünü silmek istediğinize emin misiniz?',
       showDenyButton: true,
       showCancelButton: false,
       confirmButtonText: 'Evet',
@@ -76,8 +76,8 @@ export class AdminproductlistComponent implements OnInit{
         const url = `${this.api_url}/${id}`;
         this.http.delete(url).subscribe({
           next: () => {
-            console.log(`Kategori ${id} başarıyla silindi!`);
-            this.product = this.product.filter(item => item.id !== id);
+            Swal.fire('Başarı', "Ürün başarılı bir şekilde silindi... !", "success");
+            window.location.reload();
           },
           error: (err) => {
             console.error('Silme işlemi başarısız oldu:', err);

@@ -4,7 +4,7 @@
       <div class="row gx-4 gx-lg-5 align-items-center">
         <ng-container *ngIf="item; else loading">
           <div class="col-md-6">
-            <img class="img-fluid mb-5 mb-md-0" [src]="'assets/cozastore-master/images/products/' + item.imgfile" alt="{{item.name}}" />
+            <img class="img-fluid mb-5 mb-md-0" [src]="'assets/cozastore-master/images/products/' + item.imgfile +'.jpg'" alt="{{item.name}}" />
           </div>
           <div class="col-md-6">
             <h1 class="display-3 fw-bolder">{{item.name}}</h1>

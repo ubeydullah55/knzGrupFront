@@ -20,7 +20,7 @@
                                 <tr *ngFor="let item of urunList; trackBy: trackById" class="table_row">
                                     <td class="column-1">
                                       <div class="how-itemcart1">
-                                        <img [src]="'assets/cozastore-master/images/products/' + item.imgfile" alt="IMG">
+                                        <img [src]="'assets/cozastore-master/images/products/' + item.imgfile +'.jpg'" alt="IMG">
                                       </div>
                                     </td>
                                     <td class="column-2">{{item.name}}</td>

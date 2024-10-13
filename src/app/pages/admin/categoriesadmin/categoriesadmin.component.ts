@@ -53,6 +53,8 @@ export class CategoriesadminComponent implements OnInit{
           next: (response) => {          
             this.category.push(response);
             this.addCategoryForm.reset();  // Formu temizle
+            Swal.fire('Başarı', "Kategori başarılı bir şekilde eklendi... !", "success");
+            window.location.reload();
           },
           error: (err) => {
             console.error('Kategori ekleme işlemi başarısız oldu:', err);
@@ -86,9 +88,9 @@ export class CategoriesadminComponent implements OnInit{
       if (result.isConfirmed) {
         const url = `${this.api_url}/${id}`;
         this.http.delete(url).subscribe({
-          next: () => {
-            console.log(`Kategori ${id} başarıyla silindi!`);
-            this.category = this.category.filter(item => item.id !== id);
+          next: () => {        
+            Swal.fire('Başarı', "Kategori başarılı bir şekilde silindi... !", "success");
+           window.location.reload();
           },
           error: (err) => {
             console.error('Silme işlemi başarısız oldu:', err);
