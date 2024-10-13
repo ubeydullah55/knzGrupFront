@@ -2,7 +2,7 @@ import { Component, Inject, inject,OnInit, PLATFORM_ID } from '@angular/core';
 import { CartService } from '../../../services/cart.service';
 import { ProductsService } from '../../../services/products.service';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { DataService } from '../../../services/data-service.service';
 import { CategoryService } from '../../../services/category.service';
 import { productsModel } from '../../../models/productModel';
@@ -12,7 +12,7 @@ import { categoryModel } from '../../../models/categoryModel';
 @Component({
   selector: 'app-products',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,RouterModule],
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.css']  // Düzeltilmiş: 'styleUrls' yerine 'styleUrl' yerine
 })
