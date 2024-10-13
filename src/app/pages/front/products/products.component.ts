@@ -26,7 +26,7 @@ export class ProductsComponent implements OnInit {
   dataService = inject(DataService);
   products: productsModel[] = [];
   categories: categoryModel[] = [];
-
+  selectedCategoryId: number | null = null;
 
   constructor(private router: Router,@Inject(PLATFORM_ID) private platformId: Object) {}
   ngOnInit(): void {
@@ -73,5 +73,17 @@ export class ProductsComponent implements OnInit {
         console.error('Ürünler alınırken bir hata oluştu:', err);
       }
     });
+  }
+  // Kategori seçme fonksiyonu
+  kategoriSec(categoryId: number | null) {
+    this.selectedCategoryId = categoryId; // Seçilen kategori ID'sini güncelle
+  }
+
+  // Ürünleri filtreleyen bir getter
+  get filteredProducts() {
+    if (this.selectedCategoryId) {
+      return this.products.filter(product => product.categoryid === this.selectedCategoryId);
+    }
+    return this.products; // Tüm ürünleri göster
   }
 }

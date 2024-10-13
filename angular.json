@@ -57,6 +57,7 @@
   "src/assets/cozastore-master/vendor/sweetalert/sweetalert.min.js",
   "src/assets/cozastore-master/vendor/perfect-scrollbar/perfect-scrollbar.min.js",
   "src/assets/cozastore-master/js/main.js",
+  
 "src/assets/panel/datatable/datatables-simple-demo.js"],
             "server": "src/main.server.ts",
             "prerender": true,
