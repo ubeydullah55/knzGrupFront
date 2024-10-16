@@ -35,9 +35,7 @@ export class ProductsService {
     const products = this.productHome.filter(product => product.categoryid === id);
   return products.length > 0 ? products : undefined;
   }
-  deneme1(){
-    alert('geldi');
-  }
+
   getProductById(id: number): Observable<productsModel | undefined> {
     return this.getAllProductsApi().pipe(
       map(products => products.find(product => product.id === id))
@@ -46,7 +44,7 @@ export class ProductsService {
 
   public getAllProductsApi(): Observable<productsModel[]> {
     const timestamp = new Date().getTime();  // Zaman damgası
-    return this.http.get<productsModel[]>(`${this.api_url}?t=${timestamp}`)
+    return this.http.get<productsModel[]>(this.api_url)
       .pipe(
         map(products => 
           products.map(product => ({
@@ -56,9 +54,24 @@ export class ProductsService {
         )
       );
   }
-  private generateSlugApi(name: string): string {
-    return name.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '');
-  }
   
+  private generateSlugApi(name: string): string {
+    const trMap = {
+      'ç': 'c', 'Ç': 'C',
+      'ğ': 'g', 'Ğ': 'G',
+      'ı': 'i', 'İ': 'I',
+      'ö': 'o', 'Ö': 'O',
+      'ş': 's', 'Ş': 'S',
+      'ü': 'u', 'Ü': 'U'
+    } as const;
+  
+    // Türkçe karakterleri uygun İngilizce karşılıklarına çevirme
+    name = name.replace(/[çÇğĞıİöÖşŞüÜ]/g, (match) => trMap[match as keyof typeof trMap]);
+  
+    // Slug oluşturma: Boşlukları '-' ile değiştirme ve geçersiz karakterleri temizleme
+    return name.toLowerCase()
+      .replace(/ /g, '-')
+      .replace(/[^\w-]+/g, '');
+  }  
   
 }
