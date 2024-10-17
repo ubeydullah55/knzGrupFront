@@ -1,6 +1,6 @@
 <div class="row">
-    <div class="col-lg-1"></div>
-    <div class="col-lg-10">
+    <div class="col-1 col-lg-1"></div>
+    <div class="col-10 col-lg-10">
         <div class="card mb-4">
             <div class="card-header">
                 <i class="fa fa-table me-1"></i>
@@ -10,12 +10,13 @@
                 <table id="datatablesSimple" class="table table-hover">
                     <thead>
                         <tr>
-                            <th style="text-align: center;">TeklifId</th>
-                            <th style="text-align: center;">Ad Soyad</th>
-                            <th style="text-align: center;">Mail</th>
-                            <th style="text-align: center;">Telefon</th>
-                            <th style="text-align: center;">Tarih</th>
-                            <th style="text-align: center;">Tutar</th>
+                            <th style="text-align: center;"><b>TeklifId</b></th>
+                            <th style="text-align: center;"><b>Ad Soyad</b></th>
+                            <th style="text-align: center;"><b>Mail</b></th>
+                            <th style="text-align: center;"><b>Telefon</b></th>
+                            <th style="text-align: center;"><b>Tarih</b></th>
+                            <th style="text-align: center;"><b>Tutar</b></th>
+                            <th style="text-align: center;"><b>Sil</b></th>
                         </tr>
                     </thead>
                     <tfoot>
@@ -26,6 +27,7 @@
                             <th style="text-align: center;">Telefon</th>
                             <th style="text-align: center;">Tarih</th>
                             <th style="text-align: center;">Tutar</th>
+                            <th style="text-align: center;">Sil</th>
                         </tr>
                     </tfoot>
                     <tbody>
@@ -39,8 +41,8 @@
                             <td style="text-align: center;">{{item.name}}</td>
                             <td style="text-align: center;">{{item.mail}}</td>
                             <td style="text-align: center;">{{item.tel}}</td>
-                            <td style="text-align: center;">{{item.tarih}}</td>
-                            <td style="text-align: center;"><b>{{item.totalprice}}₺</b></td>
+                            <td style="text-align: center;">{{item.tarih | date:'dd/MM/yyyy HH:mm'}}</td>
+                            <td style="text-align: center;"><b style="color: darkcyan;">{{item.totalprice}}₺</b></td>
                             <td style="text-align: center;vertical-align: middle;"><button (click)="siparisDelete(item.siparisid)" class="btn btn-danger btn-m rounded-pill" ><i class="bi bi-trash"></i></button></td>
                         </tr>
                     </tbody>
@@ -48,5 +50,5 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-1"></div>
+    <div class="col-1 col-lg-1"></div>
 </div>

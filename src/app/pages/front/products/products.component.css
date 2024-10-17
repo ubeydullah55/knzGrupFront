@@ -2,3 +2,21 @@
     position: relative; /* Veya flex veya grid kullanabilirsiniz */
   }
   
+
+  .block2-txt-child1 a {
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* 2 satırda sınırlandır */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis; /* Taşan metni '...' ile göster */
+    white-space: normal;
+    height: 3em; /* 2 satıra denk gelen yükseklik */
+  }
+  .block2-txt-child1 {
+    padding-left: 0; /* Sol taraftaki padding'i kaldır */
+    margin-left: 0;  /* Sol taraftaki margin'i kaldır */
+    width: 100%;     /* Genişliği tam olarak kullan */
+  }
+  
+ 
+  
