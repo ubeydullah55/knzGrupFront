@@ -104,7 +104,7 @@
                             <div class="d-flex align-items-center mb-3">
                                 <i class="fa fa-envelope fa-2x" aria-hidden="true" style="margin-right: 5%;"></i>
                                 <div class="bor8 bg0 flex-grow-1">
-                                    <input class="stext-111 cl8 plh3 size-111 p-lr-15" type="email" name="mail" placeholder="Mail Adresiniz" [(ngModel)]="formData.mail" required>
+                                    <input class="stext-111 cl8 plh3 size-111 p-lr-15" type="email" name="mail" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"  placeholder="Mail Adresiniz" [(ngModel)]="formData.mail" required>
                                 </div>
                             </div>
                         
@@ -112,12 +112,14 @@
                                 <i class="fa fa-phone-square fa-2x" aria-hidden="true" style="margin-right: 5%;"></i>
                                 <div class="bor8 bg0 flex-grow-1">
                                     <input class="stext-111 cl8 plh3 size-111 p-lr-15" 
-                                           type="text" 
+                                           type="number" 
                                            name="telefon" 
                                            placeholder="Sıfır Olmadan" 
                                            [(ngModel)]="formData.telefon" 
                                            maxlength="10"  
-                                           required>
+                                           required
+                                           pattern="[0-9]*" 
+                                           inputmode="numeric">
                                 </div>
                             </div>
 
