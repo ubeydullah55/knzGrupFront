@@ -7,6 +7,8 @@ import { productsModel } from '../../../models/productModel';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import Swal from 'sweetalert2';
+import { catchError, map, Observable, tap, throwError } from 'rxjs';
+import { response } from 'express';
 
 
 
@@ -22,7 +24,7 @@ export class AdminaddproductComponent implements OnInit{
   public Editor: any;
   public editorData: string = '';
   api_url = `${AppConfig.apiUrl}/products`;
- 
+  api_base = `${AppConfig.apiUrl}`;
   categories_url = `${AppConfig.apiUrl}/categories`; // Kategori API'si
   categories: { id: number, name: string }[] = []; // Kategori dizisi
   product: productsModel = {
@@ -71,6 +73,9 @@ export class AdminaddproductComponent implements OnInit{
     }
 }
 
+
+
+
 getCategories() {
   const timestamp = new Date().getTime(); // Zaman damgası
   this.http.get<{ id: number; name: string }[]>(`${this.categories_url}?t=${timestamp}`).subscribe({
@@ -82,7 +87,6 @@ getCategories() {
     }
   });
 }
- 
 
   onCategoryChange(event: Event) {
     const selectElement = event.target as HTMLSelectElement; // Seçim elemanını al
@@ -91,8 +95,72 @@ getCategories() {
     this.product.categoryid = selectedCategoryId; 
   }
 
+  uploadImage(file: File): Observable<any> {
+    const formData = new FormData();
+    formData.append('file', file); // Dosyayı form verisine ekle
+  
+    return this.http.post(this.api_base+'/FileUpload/upload', formData); // API URL'sini güncelleyin
+  }
+
+  onFileSelected(event: any) {
+    this.selectedFile = event.target.files[0]; // Seçilen dosyayı al
+  }
 
   addProduct() {
+    Swal.fire({
+      title: 'Ürünü kaydetmek istediğinize emin misiniz?',
+      showDenyButton: true,
+      showCancelButton: false,
+      confirmButtonText: 'Evet',
+      denyButtonText: 'Hayır',
+      customClass: {
+        actions: 'my-actions',
+        cancelButton: 'order-1 right-gap',
+        confirmButton: 'order-2',
+        denyButton: 'order-3',
+      },
+    }).then((result) => {
+      if (result.isConfirmed) {
+        if (this.selectedFile) { // Eğer bir dosya seçildiyse
+          this.uploadImage(this.selectedFile).subscribe({
+            next: (response: any) => {
+              console.log("ürün adı"+response.filePath);
+              console.log("base api:"+this.api_base);
+              const productData = {
+                name: this.product.name,
+                price: this.product.price,
+                imgfile: "asds", // Yüklenen dosyanın adını buradan al
+                description: this.product.description,
+                categoryid: this.product.categoryid
+              };
+  
+              this.http.post(this.api_url, productData).subscribe({
+                next: (response) => {
+                  Swal.fire('Başarı', "Ürün başarılı bir şekilde eklendi... !", "success");
+                 // window.location.reload();
+                },
+                error: (error) => {
+                  console.error('Ürün eklenirken hata oluştu:', error);
+                }
+              });
+            },
+            error: (error) => {
+              console.error('Resim yüklenirken hata oluştu:', error);
+            }
+          });
+        } else {
+          Swal.fire('Hata', 'Lütfen bir resim seçin!', 'error');
+        }
+      } else if (result.isDenied) {
+        return;
+      }
+    });
+  }
+  
+  
+
+
+  addProduct2() {
 
     Swal.fire({
       title: 'Ürünü kaydetmek istediğinize emin misiniz?',
