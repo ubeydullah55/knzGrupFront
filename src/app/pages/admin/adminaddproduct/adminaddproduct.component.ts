@@ -129,7 +129,7 @@ getCategories() {
               const productData = {
                 name: this.product.name,
                 price: this.product.price,
-                imgfile: "asds", // Yüklenen dosyanın adını buradan al
+                imgfile: response.filePath, // Yüklenen dosyanın adını buradan al
                 description: this.product.description,
                 categoryid: this.product.categoryid
               };
@@ -137,7 +137,7 @@ getCategories() {
               this.http.post(this.api_url, productData).subscribe({
                 next: (response) => {
                   Swal.fire('Başarı', "Ürün başarılı bir şekilde eklendi... !", "success");
-                 // window.location.reload();
+                  window.location.reload();
                 },
                 error: (error) => {
                   console.error('Ürün eklenirken hata oluştu:', error);
