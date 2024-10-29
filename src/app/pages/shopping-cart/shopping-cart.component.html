@@ -116,6 +116,7 @@
                                            name="telefon" 
                                            placeholder="Sıfır Olmadan" 
                                            [(ngModel)]="formData.telefon" 
+                                           oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"                                                                            
                                            maxlength="10"  
                                            required
                                            pattern="[0-9]*" 
